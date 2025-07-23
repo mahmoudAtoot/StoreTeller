@@ -11,8 +11,6 @@ body {
   background: radial-gradient(circle, #fbc2eb, #a18cd1);
   margin: 0;
   padding: 0;
-  height: 100vh;
-  overflow: hidden;
 }
 
 .login-container {

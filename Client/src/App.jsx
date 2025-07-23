@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Login from './components/Login'
-import Rejister from './components/Register'
+import Register from './components/Register'
 import HomePage from './components/HomePage'
 import { Route, Routes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<><HomePage /></>} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Rejister />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/admin-dashboared" element={<OwnerPage />} />
 
       </Routes>
