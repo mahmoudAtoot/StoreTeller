@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 const Login = () => {
@@ -38,7 +38,7 @@ const Login = () => {
             if (response.ok) {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
-                navigate('/admin-dashboared');
+                navigate('/admin-dashboard');
             } else {
                 setError(data.message || 'Login failed');
             }
@@ -102,8 +102,8 @@ const Login = () => {
                     </form>
 
                     <div className="login-footer">
-                        <p>Don't have an account? <a href="/register">Sign up</a></p>
-                        <p><a href="/forgot-password">Forgot your password?</a></p>
+                        <p>Don't have an account? <Link to="/register">Sign up</Link></p>
+                        <p><Link to="/forgot-password">Forgot your password?</Link></p>
                     </div>
                 </div>
             </div>

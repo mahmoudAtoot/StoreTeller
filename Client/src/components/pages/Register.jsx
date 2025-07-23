@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../App.css'
 
 const Register = () => {
@@ -143,7 +143,7 @@ const Register = () => {
                     </form>
 
                     <div className="login-footer">
-                        <p>Already have an account? <a href="/login">Login here</a></p>
+                        <p>Already have an account? <Link to="/login">Login here</Link></p>
                     </div>
                 </div>
             </div>
