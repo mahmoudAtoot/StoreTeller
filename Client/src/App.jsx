@@ -8,7 +8,6 @@ import LoginPage from './components/pages/LoginPage';
 import Register from './components/pages/Register';
 import ShopPage from './components/pages/ShopPage';
 import OwnerPage from './components/pages/OwnerPage';
-import ProductAddPage from './components/pages/productaddpage';
 
 function App() {
   return (
