@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './categoryselector.module.css';
 
 const CategorySelector = () => {
-    // Placeholder for categories
+    const [activeCategory, setActiveCategory] = useState('Category 1');
     const categories = ['Category 1', 'Category 2', 'Category 3'];
 
     return (
-        <div className={styles.container}>
-            <label htmlFor="category-select" className="form-label">Category:</label>
-            <select id="category-select" className="form-select">
-                {categories.map(category => (
-                    <option key={category} value={category}>{category}</option>
-                ))}
-            </select>
+        <div className={styles.categoryBar}>
+            {categories.map(category => (
+                <button
+                    key={category}
+                    className={`${styles.categoryButton} ${activeCategory === category ? styles.active : ''}`}
+                    onClick={() => setActiveCategory(category)}
+                >
+                    {category}
+                </button>
+            ))}
         </div>
     );
 };

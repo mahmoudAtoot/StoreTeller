@@ -1,0 +1,25 @@
+.shelfVisualContainer {
+    background-color: #6b4226; /* Darker wood tone for the top surface */
+    border: 4px solid #4a2c1a; /* Stronger border for the top surface */
+    border-radius: 5px;
+    height: 200px; /* Depth of the shelf (from front to back) */
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    transform: perspective(2000px) rotateX(76deg) translateZ(0px); /* Your desired 3D transform for the whole shelf */
+    transform-origin: bottom center;
+    transform-style: preserve-3d; /* Crucial for nested 3D transforms */
+}
+
+.shelfVisualContainer::before {
+    content: '';
+    position: absolute;
+    top: 100%; /* Position it at the bottom edge of the main container */
+    left: 0;
+    width: 100%;
+    height: 20px; /* Thickness of the front face */
+    background-color: #8B4513; /* Color for the front face */
+    transform: rotateX(-60deg) translateY(0px); /* Rotate to be vertical and pull back by half its height */
+    transform-origin: top center; /* Rotate from its top edge */
+    z-index: 2; /* Ensure it's above the main shelf */
+}

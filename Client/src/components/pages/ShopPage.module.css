@@ -1,3 +1,19 @@
-.container {
-    padding: 2rem;
+.shopPageContainer {
+  display: flex;
+  height: calc(100vh - 120px); /* Adjust based on navbar/footer height */
+  padding: 1rem;
+}
+
+.mainContent {
+  flex: 1;
+  padding-right: 1rem;
+  overflow-y: auto; /* Enable scrolling for main content if needed */
+  display: flex; /* Added flexbox */
+  flex-direction: column; /* Stack children vertically */
+}
+
+.cashierSection {
+  flex-basis: 25%; /* Takes up 25% of the space */
+  padding-left: 1rem;
+  border-left: 1px solid #eee;
 }
