@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './iteminfoform.module.css';
 
 const ItemInfoForm = () => {
     return (
-        <form>
+        <form className={styles.form}>
             <label>Name:</label>
             <input type="text" />
             <label>Price:</label>

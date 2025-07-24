@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './footer.module.css';
 
 const Footer = () => {
     return (
-        <footer>
+        <footer className={styles.footer}>
             <p>© 2025 StoreTeller</p>
         </footer>
     );
