@@ -1,7 +1,12 @@
 .containerFluid {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+    padding: 20px;
+    background-color: #4a4a4a; /* Darker, muted wall color */
+    border-radius: 8px;
+    min-height: 500px;
+    position: relative; /* Needed for absolute positioning of shelves */
+    overflow: hidden; /* Hide anything that goes outside */
+    display: flex; /* Added flexbox */
+    flex-direction: column; /* Stack shelves vertically */
+    align-items: center; /* Center shelves horizontally */
 }

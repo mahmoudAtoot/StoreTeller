@@ -1,3 +1,32 @@
-.container {
-    margin-bottom: 1rem; /* from bootstrap's mb-3 */
+.categoryBar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    background-color: #e0e0e0; /* Light background for the bar */
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.categoryButton {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    margin: 0 0.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.categoryButton:hover {
+    background-color: #d0d0d0;
+    color: #333;
+}
+
+.categoryButton.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
 }

@@ -1,20 +1,20 @@
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-}
+.shelfContainer {
 
-.col {
-    flex-basis: 0;
-    flex-grow: 1;
-    max-width: 100%;
-    position: relative;
+    position: relative; /* Crucial for absolute positioning of items and visual shelf */
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    min-height: 200px; /* Adjusted height to accommodate items and shelf visual */
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end; /* Align items to the bottom of this container */
+    padding-bottom: 50px; /* Space for the ShelfVisual at the bottom */
 }
 
-.mb4 {
-    margin-bottom: 1.5rem!important;
+.productWrapper {
+    position: absolute;
+    width: 18%; /* Adjust as needed for spacing */
+    height: 120px; /* Fixed height for consistent item sizing */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 10; /* Higher z-index for items */
 }

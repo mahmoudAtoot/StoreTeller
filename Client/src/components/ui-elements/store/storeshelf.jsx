@@ -1,8 +1,10 @@
 import React from 'react';
 import Product2D from '../../shared/product2d';
+import { ShelfVisual } from './'; // Import ShelfVisual
 import styles from './storeshelf.module.css';
 
-const StoreShelf = ({ isOwner }) => {
+const StoreShelf = ({ isOwner, onProductClick }) => {
+    console.log('StoreShelf: onProductClick prop:', onProductClick);
     // Placeholder for items on a shelf
     const items = [
         { id: 1, name: 'Product 1', price: '10.00', image: '' },
@@ -13,12 +15,17 @@ const StoreShelf = ({ isOwner }) => {
     ];
 
     return (
-        <div className={`${styles.row} ${styles.mb4}`}>
-            {items.map(item => (
-                <div key={item.id} className={styles.col}>
-                    <Product2D product={item} isOwner={isOwner} />
+        <div className={styles.shelfContainer}>
+            {items.map((item, index) => (
+                <div
+                    key={item.id}
+                    className={styles.productWrapper}
+                    style={{ left: `${(index / items.length) * 100 + (100 / items.length / 2)}%`, transform: `translateX(-50%)` }} /* Position items evenly */
+                >
+                    <Product2D product={item} isOwner={isOwner} onProductClick={onProductClick} />
                 </div>
             ))}
+            <ShelfVisual />
         </div>
     );
 };
