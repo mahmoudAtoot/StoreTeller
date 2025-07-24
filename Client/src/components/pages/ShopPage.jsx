@@ -1,10 +1,12 @@
 import React from 'react';
-import { Navbar, CategorySelector, Counter, ItemDisplay, ShelfContainer, StoreShelf } from '..';
+import CategorySelector from '../ui-elements/store/categoryselector';
+import ShelfContainer from '../ui-elements/store/shelfcontainer';
 
 function ShopPage() {
     return (
         <div>
-            <Navbar />
+            <CategorySelector />
+            <ShelfContainer />
         </div>
     );
 }
