@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Register.module.css';
+import { Footer , Navbar } from '../shared';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -54,8 +55,7 @@ const Register = () => {
 
     return (
         <>
-
-
+            <Navbar />
             <div className={styles.loginContainer}>
                 <div className={styles.loginFormWrapper}>
                     <div className={styles.loginHeader}>
@@ -147,6 +147,7 @@ const Register = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 };

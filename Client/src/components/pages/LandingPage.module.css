@@ -6,8 +6,8 @@
   min-height: 100vh;
   padding: 2rem;
   text-align: center;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Subtle gradient */
-  color: #333;
+  background: linear-gradient(135deg, #111827 0%, #1e293b 100%); /* تدرج أزرق-داكن */
+  color: #f1f5f9;
 }
 
 .heroSection {
@@ -18,29 +18,32 @@
 .title {
   font-size: 3.5rem;
   font-weight: 700;
-  color: #2c3e50;
+  color: #38bdf8; /* أزرق فاتح */
   margin-bottom: 1rem;
   line-height: 1.1;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .subtitle {
   font-size: 1.5rem;
-  color: #555;
+  color: #94a3b8; /* رمادي فاتح */
   margin-bottom: 2rem;
   line-height: 1.5;
 }
 
 .ctaButton {
-  background-color: #007bff;
+  background-color: #2563eb;
   color: white;
   padding: 0.8rem 2rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 1.2rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
 }
 
 .ctaButton:hover {
-  background-color: #0056b3;
+  background-color: #1e40af;
+  box-shadow: 0 6px 12px rgba(30, 64, 175, 0.6);
 }
