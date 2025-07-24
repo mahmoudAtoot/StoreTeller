@@ -1,5 +1,24 @@
 .footer {
-    padding: 1rem;
+    padding: 1rem 2rem;
     text-align: center;
     margin-top: auto;
+    color: #f9fafb;
+    font-size: 0.9rem;
+    background-color: #111827; /* نفس خلفية الـ navbar */
+    border-top: 1px solid #111827; /* حدود خفيفة */
+    font-family: 'Segoe UI', sans-serif;
+    transition: all 0.8s ease-in-out;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.projectName {
+    font-weight: bold;
+    color: #38bdf8; /* نفس لون hover في الروابط */
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.projectName:hover {
+    text-decoration: underline;
+    color: #60a5fa; /* لمسة خفيفة عند الـ hover */
 }
