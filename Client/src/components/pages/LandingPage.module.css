@@ -3,18 +3,44 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  min-height: 100vh;
   padding: 2rem;
   text-align: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Subtle gradient */
+  color: #333;
+}
+
+.heroSection {
+  max-width: 800px;
+  margin-bottom: 2rem;
 }
 
 .title {
-  font-size: 3rem;
-  color: #333;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #2c3e50;
   margin-bottom: 1rem;
+  line-height: 1.1;
 }
 
 .subtitle {
   font-size: 1.5rem;
-  color: #666;
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.ctaButton {
+  background-color: #007bff;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #0056b3;
 }
