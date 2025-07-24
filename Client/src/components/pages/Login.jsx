@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-
+import styles from './Login.module.css';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -53,18 +53,18 @@ const Login = () => {
     return (
         <>
 
-            <div className="login-container">
-                <div className="login-form-wrapper">
-                    <div className="login-header">
+            <div className={styles.loginContainer}>
+                <div className={styles.loginFormWrapper}>
+                    <div className={styles.loginHeader}>
                         <h1>StoreTrello</h1>
                         <h2>Welcome Back</h2>
                         <p>Sign in to your account</p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="login-form">
-                        {error && <div className="error-message">{error}</div>}
+                    <form onSubmit={handleSubmit} className={styles.loginForm}>
+                        {error && <div className={styles.errorMessage}>{error}</div>}
 
-                        <div className="form-group">
+                        <div className={styles.formGroup}>
                             <label htmlFor="email">Email Address</label>
                             <input
                                 type="email"
@@ -78,7 +78,7 @@ const Login = () => {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.formGroup}>
                             <label htmlFor="password">Password</label>
                             <input
                                 type="password"
@@ -94,14 +94,14 @@ const Login = () => {
 
                         <button
                             type="submit"
-                            className="login-button"
+                            className={styles.loginButton}
                             disabled={loading}
                         >
                             {loading ? 'Signing In...' : 'Sign In'}
                         </button>
                     </form>
 
-                    <div className="login-footer">
+                    <div className={styles.loginFooter}>
                         <p>Don't have an account? <Link to="/register">Sign up</Link></p>
                         <p><Link to="/forgot-password">Forgot your password?</Link></p>
                     </div>

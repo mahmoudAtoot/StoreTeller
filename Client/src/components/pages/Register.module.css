@@ -1,0 +1,104 @@
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.loginFormWrapper {
+  background-color: #ffffffcc;
+  backdrop-filter: blur(8px);
+  padding: 3rem;
+  border-radius: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 420px;
+  animation: slideUp 0.8s ease-in-out;
+}
+
+.loginHeader h1 {
+  font-size: 2.5rem;
+  color: #5f27cd;
+  margin-bottom: 0.2rem;
+  text-align: center;
+}
+
+.loginHeader h2 {
+  font-size: 1.4rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.loginHeader p {
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.formGroup input:focus {
+  border-color: #6c5ce7;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(to right, #6c5ce7, #a29bfe);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.loginButton:hover {
+  background: linear-gradient(to right, #5e50ee, #7d6dff);
+}
+
+.errorMessage {
+  background-color: #ffe0e0;
+  color: #d63031;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.loginFooter {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #444;
+}
+
+.loginFooter a {
+  color: #6c5ce7;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.loginFooter a:hover {
+  text-decoration: underline;
+}

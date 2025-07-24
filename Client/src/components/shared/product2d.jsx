@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ItemDisplay from '../ui-elements/store/itemdisplay';
+import styles from './product2d.module.css';
 
 const Product2D = ({ product, isOwner }) => {
     const [showOverlay, setShowOverlay] = useState(false);
@@ -14,11 +15,11 @@ const Product2D = ({ product, isOwner }) => {
 
     return (
         <>
-            <div className="card h-100" onClick={handleClick}>
-                <img src={product.image || 'https://placehold.co/600x400'} className="card-img-top" alt={product.name} />
-                <div className="card-body">
-                    <h5 className="card-title">{product.name}</h5>
-                    <p className="card-text">${product.price}</p>
+            <div className={`${styles.card} ${styles.h100}`} onClick={handleClick}>
+                <img src={product.image || 'https://placehold.co/600x400'} className={styles.cardImgTop} alt={product.name} />
+                <div className={styles.cardBody}>
+                    <h5 className={styles.cardTitle}>{product.name}</h5>
+                    <p className={styles.cardText}>${product.price}</p>
                     {isOwner && <button className="btn btn-primary">Edit</button>}
                 </div>
             </div>

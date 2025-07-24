@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import '../../App.css'
+import styles from './Register.module.css';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -56,18 +56,18 @@ const Register = () => {
         <>
 
 
-            <div className="login-container">
-                <div className="login-form-wrapper">
-                    <div className="login-header">
+            <div className={styles.loginContainer}>
+                <div className={styles.loginFormWrapper}>
+                    <div className={styles.loginHeader}>
                         <h1>StoreTrello</h1>
                         <h2>Create Account</h2>
                         <p>Sign up to start shopping</p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="login-form">
-                        {error && <div className="error-message">{error}</div>}
+                    <form onSubmit={handleSubmit} className={styles.loginForm}>
+                        {error && <div className={styles.errorMessage}>{error}</div>}
 
-                        <div className="form-group">
+                        <div className={styles.formGroup}>
                             <label htmlFor="firstName">First Name</label>
                             <input
                                 type="text"
@@ -81,7 +81,7 @@ const Register = () => {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.formGroup}>
                             <label htmlFor="lastName">Last Name</label>
                             <input
                                 type="text"
@@ -95,7 +95,7 @@ const Register = () => {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.formGroup}>
                             <label htmlFor="email">Email Address</label>
                             <input
                                 type="email"
@@ -109,7 +109,7 @@ const Register = () => {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.formGroup}>
                             <label htmlFor="password">Password</label>
                             <input
                                 type="password"
@@ -123,7 +123,7 @@ const Register = () => {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.formGroup}>
                             <label htmlFor="confirmPassword">Confirm Password</label>
                             <input
                                 type="password"
@@ -137,12 +137,12 @@ const Register = () => {
                             />
                         </div>
 
-                        <button type="submit" className="login-button" disabled={loading}>
+                        <button type="submit" className={styles.loginButton} disabled={loading}>
                             {loading ? 'Creating Account...' : 'Register'}
                         </button>
                     </form>
 
-                    <div className="login-footer">
+                    <div className={styles.loginFooter}>
                         <p>Already have an account? <Link to="/login">Login here</Link></p>
                     </div>
                 </div>
@@ -152,3 +152,4 @@ const Register = () => {
 };
 
 export default Register;
+

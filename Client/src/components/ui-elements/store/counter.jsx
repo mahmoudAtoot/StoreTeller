@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import styles from './counter.module.css';
 
 const Counter = () => {
 
     return (
-        <div>
+        <div className={styles.container}>
             
         </div>
     );

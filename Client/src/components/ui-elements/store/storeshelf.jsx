@@ -1,5 +1,6 @@
 import React from 'react';
 import Product2D from '../../shared/product2d';
+import styles from './storeshelf.module.css';
 
 const StoreShelf = ({ isOwner }) => {
     // Placeholder for items on a shelf
@@ -12,9 +13,9 @@ const StoreShelf = ({ isOwner }) => {
     ];
 
     return (
-        <div className="row mb-4">
+        <div className={`${styles.row} ${styles.mb4}`}>
             {items.map(item => (
-                <div key={item.id} className="col">
+                <div key={item.id} className={styles.col}>
                     <Product2D product={item} isOwner={isOwner} />
                 </div>
             ))}
