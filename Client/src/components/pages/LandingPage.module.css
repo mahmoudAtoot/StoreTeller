@@ -1,46 +1,217 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 2rem;
-  text-align: center;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Subtle gradient */
-  color: #333;
+:root {
+  --bg: #0f0f1b;
+  --text: #f3f3f3;
+  --accent: #00f5d4;
+  --secondary: #5eead4;
 }
 
-.heroSection {
-  max-width: 800px;
-  margin-bottom: 2rem;
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg);
+  padding: 5rem 4rem;
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.left {
+  max-width: 600px;
+  animation: fadeIn 1.2s ease-in-out;
 }
 
 .title {
   font-size: 3.5rem;
-  font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  line-height: 1.1;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.title span {
+  color: var(--accent);
 }
 
 .subtitle {
-  font-size: 1.5rem;
-  color: #555;
-  margin-bottom: 2rem;
-  line-height: 1.5;
+  font-size: 1.25rem;
+  color: #aaa;
+  margin-bottom: 2.5rem;
 }
 
-.ctaButton {
-  background-color: #007bff;
-  color: white;
-  padding: 0.8rem 2rem;
-  border: none;
-  border-radius: 5px;
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.primaryBtn {
+  background: var(--accent);
+  color: #000;
+}
+
+.primaryBtn:hover {
+  background: #19f8e8;
+}
+
+.secondaryBtn {
+  background: transparent;
+  border: 2px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.secondaryBtn:hover {
+  background: var(--secondary);
+  color: #000;
+}
+
+.right img {
+  width: 500px;
+  animation: slideIn 1s ease-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .right img {
+    width: 100%;
+    margin-top: 2rem;
+  }
+}
+
+:root {
+  --bg: #0f0f1b;
+  --text: #f3f3f3;
+  --accent: #00f5d4;
+  --secondary: #5eead4;
+}
+
+.featuresSection {
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 4rem 5rem;
+  text-align: center;
+}
+
+.featuresSection h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: var(--accent);
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   font-size: 1.2rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: var(--text);
+  background: #111123;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  box-shadow: 0 0 20px rgb(0 245 212 / 0.3);
+  min-width: 260px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
 }
 
-.ctaButton:hover {
-  background-color: #0056b3;
+.featureItem:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px var(--accent);
+}
+
+.icon {
+  color: var(--accent);
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .featuresList {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .featureItem {
+    justify-content: center;
+    min-width: auto;
+  }
+}
+.testimonialsSection {
+  background: var(--bg);
+  color: var(--text);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.testimonials {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.testimonial {
+  background: #111123;
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgb(0 245 212 / 0.3);
+  max-width: 350px;
+  font-style: italic;
+}
+
+.testimonial footer {
+  margin-top: 1rem;
+  font-weight: 700;
+  color: var(--accent);
 }

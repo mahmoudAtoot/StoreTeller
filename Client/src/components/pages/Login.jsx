@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Login.module.css';
+import { Footer, Navbar } from '../shared';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -52,7 +53,7 @@ const Login = () => {
 
     return (
         <>
-
+            <Navbar />
             <div className={styles.loginContainer}>
                 <div className={styles.loginFormWrapper}>
                     <div className={styles.loginHeader}>
@@ -107,6 +108,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 };
