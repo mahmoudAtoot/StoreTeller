@@ -1,20 +1,42 @@
 .shelfContainer {
-
-    position: relative; /* Crucial for absolute positioning of items and visual shelf */
+    position: relative;
+    /* مهم لوضع العناصر بشكل مطلق داخل الحاوية */
     width: 100%;
-    min-height: 200px; /* Adjusted height to accommodate items and shelf visual */
+    min-height: 200px;
+    /* ارتفاع كافي لاستيعاب العناصر والرف */
     display: flex;
     justify-content: space-around;
-    align-items: flex-end; /* Align items to the bottom of this container */
-    padding-bottom: 50px; /* Space for the ShelfVisual at the bottom */
+    /* توزيع العناصر بشكل متساوٍ أفقياً */
+    align-items: flex-end;
+    /* محاذاة العناصر لأسفل الحاوية */
+    padding-bottom: 50px;
+    /* مساحة في الأسفل لحجز مكان الرف */
+    box-sizing: border-box;
+    /* للتأكد من حساب الحشو ضمن الأبعاد */
 }
 
 .productWrapper {
     position: absolute;
-    width: 18%; /* Adjust as needed for spacing */
-    height: 120px; /* Fixed height for consistent item sizing */
+    width: 18%;
+    /* عرض ثابت للعناصر، يمكن تعديله حسب الحاجة */
+    height: 120px;
+    /* ارتفاع ثابت للعناصر لضمان تناسق الحجم */
     display: flex;
     justify-content: center;
+    /* تمركز المحتوى أفقياً */
     align-items: flex-end;
-    z-index: 10; /* Higher z-index for items */
+    /* محاذاة المحتوى لأسفل */
+    z-index: 10;
+    /* طبقة أعلى للعناصر فوق الرف */
+    bottom: 50px;
+    /* لضبط موضع العناصر فوق الرف */
+    transition: transform 0.3s ease;
+    /* إضافة انتقالات سلسة عند التغيير */
+}
+
+.productWrapper:hover {
+    transform: translateY(-10px);
+    /* تأثير رفع بسيط عند المرور بالفأرة */
+    z-index: 20;
+    /* رفع العنصر فوق الآخرين عند التفاعل */
 }

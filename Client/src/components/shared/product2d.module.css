@@ -2,28 +2,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end; /* Align items to the bottom of their container */
-    padding: 0; /* Removed padding */
-    padding-bottom: 10px;
+    justify-content: flex-end; /* العناصر تتراصف من الأسفل */
+    padding: 0;
+    padding-bottom: 10px; /* مسافة صغيرة من الأسفل */
     cursor: pointer;
-    position: relative; /* Keep relative for flow within shelf */
-    height: 100%; /* Ensure it takes full height of shelf slot */
-    width: 100%; /* Allow flexbox to control width */
+    position: relative; /* يسمح بوضع عناصر مطلقة بداخلها (مثل زر التعديل) */
+    height: 100%; /* يأخذ كامل ارتفاع الحاوية الأب */
+    width: 100%; /* عرض كامل الحاوية الأب */
 }
 
 .productImage {
-    max-width: 100%;
-    max-height: 100%; /* Allow image to take full height */
-    object-fit: contain;
-    filter: drop-shadow(0px 10px 8px rgba(0, 0, 0, 0.3)); /* Softer, blob-like shadow */
-    /* No transform here */
+    max-width: 100%;   /* لا تتجاوز عرض الحاوية */
+    max-height: 100%;  /* لا تتجاوز ارتفاع الحاوية */
+    object-fit: contain; /* الصورة تظهر كاملة، حتى لو فرغت مساحة */
+    filter: drop-shadow(0px 10px 8px rgba(0, 0, 0, 0.3)); /* ظل خفيف وناعم تحت الصورة */
 }
 
 .editButton {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: #007bff;
+    position: absolute; /* لتثبيت مكان الزر */
+    top: 5px;          /* مسافة 5 بيكسل من الأعلى */
+    right: 5px;        /* مسافة 5 بيكسل من اليمين */
+    background-color: #007bff; /* أزرق زر */
     color: white;
     border: none;
     padding: 0.3rem 0.6rem;

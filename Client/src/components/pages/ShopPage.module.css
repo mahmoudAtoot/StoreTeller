@@ -1,19 +1,19 @@
 .shopPageContainer {
   display: flex;
-  height: calc(100vh - 120px); /* Adjust based on navbar/footer height */
+  height: calc(100vh - 120px); /* الارتفاع محسوب ليناسب الشاشة مع خصم مساحة النافبار أو الفوتر */
   padding: 1rem;
 }
 
 .mainContent {
-  flex: 1;
+  flex: 1; /* ياخذ باقي المساحة المتاحة */
   padding-right: 1rem;
-  overflow-y: auto; /* Enable scrolling for main content if needed */
-  display: flex; /* Added flexbox */
-  flex-direction: column; /* Stack children vertically */
+  overflow-y: auto; /* يضيف تمرير عمودي لو المحتوى كبير */
+  display: flex; /* يستخدم flexbox */
+  flex-direction: column; /* لترتيب العناصر داخله عمودياً */
 }
 
 .cashierSection {
-  flex-basis: 25%; /* Takes up 25% of the space */
+  flex-basis: 25%; /* يشغل 25% من عرض الحاوية */
   padding-left: 1rem;
-  border-left: 1px solid #eee;
+  border-left: 1px solid #eee; /* خط فاصل على اليسار */
 }
