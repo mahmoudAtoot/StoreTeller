@@ -1,3 +1,8 @@
 .container {
-    padding: 1rem;
+    padding: 1.5rem 2rem;
+    background: var(--card-bg);
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 245, 212, 0.08);
+    border: 1px solid var(--hover-bg);
+    color: var(--text);
 }

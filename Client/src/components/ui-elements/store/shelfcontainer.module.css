@@ -1,12 +1,19 @@
 .containerFluid {
     width: 100%;
-    padding: 20px;
-    background-color: #4a4a4a; /* Darker, muted wall color */
-    border-radius: 8px;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+    /* جدار خلفي داكن متدرج */
+    border-radius: 1.25rem;
     min-height: 500px;
-    position: relative; /* Needed for absolute positioning of shelves */
-    overflow: hidden; /* Hide anything that goes outside */
-    display: flex; /* Added flexbox */
-    flex-direction: column; /* Stack shelves vertically */
-    align-items: center; /* Center shelves horizontally */
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: var(--text);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border: 1px solid #2f2f45;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

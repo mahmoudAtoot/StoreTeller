@@ -62,22 +62,43 @@ const LandingPage = () => {
         </ul>
       </section>
 
+      {/* Testimonials section */}
       <section className={styles.testimonialsSection}>
-        <h2>What Our Customers Say</h2>
+        <h2 className={styles.testimonialsTitle}>What Our Users Say</h2>
         <div className={styles.testimonials}>
           <blockquote className={styles.testimonial}>
-            <p>"StoreTeller made managing my online shop so easy! Highly recommended."</p>
-            <footer>- Sarah J.</footer>
+            <p>"StoreTeller made my webstore much more interactive and appealing to customers."</p>
+            <footer>- Lina M.</footer>
           </blockquote>
           <blockquote className={styles.testimonial}>
-            <p>"Amazing support and fast delivery. Love it!"</p>
-            <footer>- Ahmed M.</footer>
+            <p>"StoreTeller provided a unique style to my online store that I couldn't find anywhere else."</p>
+            <footer>- Jamal K.</footer>
+          </blockquote>
+          <blockquote className={styles.testimonial}>
+            <p>"With StoreTeller, I made my hobby business a real store with engaging customer experience."</p>
+            <footer>- Sarah B.</footer>
           </blockquote>
         </div>
       </section>
 
-
-
+      {/* How It Works section */}
+      <section className={styles.howItWorks}>
+        <h2>How StoreTeller Works</h2>
+        <div className={styles.steps}>
+          <div className={styles.stepCard}>
+            <h3>1. Sign Up</h3>
+            <p>Create your free account in seconds</p>
+          </div>
+          <div className={styles.stepCard}>
+            <h3>2. Customize</h3>
+            <p>Choose your store theme & settings</p>
+          </div>
+          <div className={styles.stepCard}>
+            <h3>3. Start Selling</h3>
+            <p>Launch your store and start receiving orders</p>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </>
