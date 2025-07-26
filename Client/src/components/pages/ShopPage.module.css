@@ -2,16 +2,16 @@
   display: flex;
   height: calc(100vh - 120px); /* الارتفاع محسوب ليناسب الشاشة مع خصم مساحة النافبار أو الفوتر */
   padding: 1rem;
-  background-color: #f8f9fa; /* Lighter background for a modern feel */
+  background-color: var(--bg); /* Lighter background for a modern feel */
 }
 
 
 
 .cashierSection {
-  flex: 1; /* Keep cashier section relatively smaller */
+  flex: 0 0 20%; /* Set cashier section to 20% width */
   padding-left: 1rem;
   /* Removed border-left for a cleaner, more integrated look */
-  background-color: #fff; /* White background for cashier section */
+  background-color: #111123; /* White background for cashier section */
   border-radius: 8px; /* Slightly rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   display: flex;

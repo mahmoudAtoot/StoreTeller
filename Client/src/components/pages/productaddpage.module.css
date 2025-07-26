@@ -1,91 +1,100 @@
+/* ProductAddPage.module.css */
+
 .container {
-  display: flex;
+  background-color: #111123;
+  min-height: 100vh;
+  color: #fff;
   padding: 2rem;
+  display: flex;
   gap: 2rem;
-  margin: 0 2rem;
-  background-color: #f8f9fa;
 }
 
-.leftColumn, .rightColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+.leftColumn,
+.rightColumn {
   flex: 1;
-}
-
-.uploadSection, .gifPreview, .detailsSection, .demoSection {
-  border: 1px solid #e9ecef;
-  padding: 1.5rem;
-  border-radius: 8px;
-  background-color: #fff;
-}
-
-.gifPreview, .demoSection {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 2rem;
 }
 
-h2 {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  font-size: 1.2rem;
-  color: #495057;
-  font-weight: 600;
+/* Shared Card Style */
+.uploadSection,
+.gifPreview,
+.detailsSection,
+.demoSection {
+  background: #1e1e2a;
+  border: 1px solid #33334d;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 0 12px #00ffcc33;
 }
 
+/* Buttons Group */
 .actionButtons {
   display: flex;
   gap: 1rem;
   margin-top: 1.5rem;
 }
 
-.generateButton, .tryAgainButton {
-  padding: 0.8rem 1.5rem;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  background-color: #fff;
+.generateButton,
+.tryAgainButton {
+  background: transparent;
+  border: 1px solid #00ffcc;
+  padding: 0.75rem 1.5rem;
+  color: #00ffcc;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
+  transition: all 0.3s ease;
 }
 
-.generateButton:hover, .tryAgainButton:hover {
-  background-color: #f8f9fa;
-  border-color: #adb5bd;
+.generateButton:hover,
+.tryAgainButton:hover {
+  background: #00ffcc22;
 }
 
-.uploadButton {
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  background-color: #28a745;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s;
+/* GIF and Upload Sections */
+.gifPreview h2,
+.uploadSection h2,
+.detailsSection h2 {
+  color: #00ffcc;
+  margin-bottom: 1rem;
 }
 
-.uploadButton:hover {
-  background-color: #218838;
-}
-
+/* Demo Preview */
 .clickableDemo {
+  border: 2px dashed #00ffcc66;
+  border-radius: 8px;
+  width: 100%;
+  height: 250px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 200px;
-  border: 1px dashed #ced4da;
-  border-radius: 4px;
+  justify-content: center;
   margin-bottom: 1rem;
 }
 
 .placeholder {
-  color: #adb5bd;
+  color: #00ffcc88;
 }
 
 .imagePreview {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  border-radius: 6px;
+}
+
+/* Upload Button */
+.uploadButton {
+  background: #00ffcc;
+  color: #000;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.uploadButton:hover {
+  background: #00e6b3;
 }

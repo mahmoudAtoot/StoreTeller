@@ -27,12 +27,12 @@ const LandingPage = () => {
         </div>
 
         {/* Right side - Image/mockup */}
-        <div className={styles.right}>
+        {/* <div className={styles.right}>
           <img
-            src="/assets/storeteller-mockup.png"
-            alt="StoreTeller App mockup"
+            // src="https://imgur.com/UaMgBsQ.jpg"
+            // alt="StoreTeller App mockup"
           />
-        </div>
+        </div> */}
       </main>
 
       {/* Features section */}
