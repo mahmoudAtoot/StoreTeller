@@ -1,25 +1,49 @@
+/* حاوية الصفحة */
 .loginContainer {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* full viewport height */
+  min-height: 100vh;
   background-color: var(--bg);
-  animation: fadeIn 1s ease-in-out;
-  padding: 1.5rem 1rem; /* تقليل البادينج شوي */
+  padding: 1rem;
+  animation: zoomIn 0.6s ease-in-out forwards;
+  overflow: hidden;
 }
 
+/* خلفية تأثير ضوء خفيف */
+.loginContainer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0, 245, 212, 0.06), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03), transparent 40%);
+  animation: floatLights 40s linear infinite;
+  z-index: 0;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* نموذج التسجيل */
 .loginFormWrapper {
+  position: relative;
+  z-index: 1;
   background-color: var(--card-bg);
-  backdrop-filter: blur(10px);
-  padding: 2rem 2.5rem; /* تقليل padding */
+  backdrop-filter: blur(8px);
+  padding: 2.5rem 3rem;
   border-radius: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0, 245, 212, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 245, 212, 0.25);
   width: 100%;
   max-width: 420px;
-  animation: slideUp 0.8s ease-in-out;
   color: var(--text);
+  animation: slideUp 0.7s ease-in-out forwards;
 }
 
+/* العناوين */
 .loginHeader h1 {
   font-size: 2.5rem;
   color: var(--accent);
@@ -41,20 +65,21 @@
   margin-bottom: 2rem;
 }
 
+/* الفورم */
 .formGroup {
-  margin-bottom: 1.3rem;
+  margin-bottom: 1.2rem;
 }
 
 .formGroup label {
   display: block;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
   color: var(--secondary);
   font-weight: 600;
 }
 
 .formGroup input {
   width: 100%;
-  padding: 0.7rem 0.9rem; /* تقليل padding */
+  padding: 0.75rem 1rem;
   border: 1.8px solid #334155;
   border-radius: 1rem;
   font-size: 1.1rem;
@@ -72,9 +97,10 @@
   border-color: var(--accent);
 }
 
+/* زر التسجيل */
 .loginButton {
   width: 100%;
-  padding: 0.6rem; /* تقليل padding */
+  padding: 0.75rem;
   background: linear-gradient(90deg, var(--accent), var(--secondary));
   color: #000;
   border: none;
@@ -91,16 +117,18 @@
   box-shadow: 0 6px 20px rgba(0, 245, 212, 0.6);
 }
 
+/* رسالة الخطأ */
 .errorMessage {
   background-color: #fee2e2;
   color: #b91c1c;
-  padding: 0.5rem 0.8rem; /* تقليل padding */
+  padding: 0.6rem 1rem;
   border-radius: 0.75rem;
   margin-bottom: 1rem;
   text-align: center;
   font-weight: 600;
 }
 
+/* فوتر الفورم */
 .loginFooter {
   margin-top: 1.5rem;
   text-align: center;
@@ -118,16 +146,32 @@
   text-decoration: underline;
 }
 
-/* Animations */
-@keyframes fadeIn {
+/* أنيميشن الخلفية */
+@keyframes floatLights {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* أنيميشن التكبير */
+@keyframes zoomIn {
   from {
+    transform: scale(0.95);
     opacity: 0;
   }
   to {
+    transform: scale(1);
     opacity: 1;
   }
 }
 
+/* أنيميشن الحركة من الأسفل للأعلى */
 @keyframes slideUp {
   from {
     transform: translateY(40px);

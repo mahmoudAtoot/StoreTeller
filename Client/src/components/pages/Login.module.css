@@ -1,15 +1,47 @@
 .loginContainer {
+  position: relative; /* ضروري لتحديد ::before */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: var(--bg); /* نفس الخلفية */
+  background-color: var(--bg);
   animation: fadeIn 1s ease-in-out;
   padding: 1rem;
+  overflow: hidden; /* لتجنب ظهور أي شيء خارج الإطار */
+}
+
+.loginContainer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0, 245, 212, 0.06), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03), transparent 40%);
+  animation: floatLights 40s linear infinite;
+  z-index: 0;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+@keyframes floatLights {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
 
 .loginFormWrapper {
-  background-color: var(--card-bg); /* نفس لون الكارد */
+  position: relative; /* ليكون فوق الخلفية */
+  z-index: 1;
+  background-color: var(--card-bg);
   backdrop-filter: blur(8px);
   padding: 2.5rem 3rem;
   border-radius: 1.5rem;
@@ -19,6 +51,8 @@
   color: var(--text);
   animation: slideUp 0.8s ease-in-out;
 }
+
+/* باقي الكود كما هو */
 
 .loginHeader h1 {
   font-size: 2.5rem;
