@@ -3,6 +3,8 @@
   --text: #f3f3f3;
   --accent: #00f5d4;
   --secondary: #5eead4;
+  --card-bg: #111123;
+  --hover-bg: #15152b;
 }
 
 .main {
@@ -13,6 +15,7 @@
   padding: 5rem 4rem;
   color: var(--text);
   min-height: 100vh;
+  flex-wrap: wrap;
 }
 
 .left {
@@ -76,51 +79,7 @@
   animation: slideIn 1s ease-out;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@media (max-width: 768px) {
-  .main {
-    flex-direction: column;
-    text-align: center;
-    padding: 3rem 2rem;
-  }
-
-  .right img {
-    width: 100%;
-    margin-top: 2rem;
-  }
-}
-
-:root {
-  --bg: #0f0f1b;
-  --text: #f3f3f3;
-  --accent: #00f5d4;
-  --secondary: #5eead4;
-}
-
+/* Features Section */
 .featuresSection {
   background-color: var(--bg);
   color: var(--text);
@@ -151,8 +110,7 @@
   align-items: center;
   gap: 1rem;
   font-size: 1.2rem;
-  color: var(--text);
-  background: #111123;
+  background: var(--card-bg);
   padding: 1rem 2rem;
   border-radius: 30px;
   box-shadow: 0 0 20px rgb(0 245 212 / 0.3);
@@ -172,46 +130,140 @@
   flex-shrink: 0;
 }
 
-/* Responsive */
-
-@media (max-width: 768px) {
-  .featuresList {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .featureItem {
-    justify-content: center;
-    min-width: auto;
-  }
-}
+/* Testimonials */
 .testimonialsSection {
   background: var(--bg);
   color: var(--text);
   padding: 4rem 2rem;
   text-align: center;
+  
+}
+
+.testimonialsTitle {
+  color: var(--accent);
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
 }
 
 .testimonials {
-  max-width: 800px;
-  margin: 0 auto;
   display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
   justify-content: center;
+  gap: 1.5rem; /* أقلت المسافة بين البلوكات */
+  flex-wrap: nowrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .testimonials {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
 }
 
 .testimonial {
-  background: #111123;
-  padding: 1.5rem 2rem;
+  background: var(--card-bg);
+  padding: 2rem 3rem; /* زودت البادينج */
   border-radius: 20px;
   box-shadow: 0 0 15px rgb(0 245 212 / 0.3);
-  max-width: 350px;
+  max-width: 380px; /* عرض أكبر */
   font-style: italic;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  cursor: default;
+}
+
+.testimonial:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 25px var(--accent);
+  background: var(--hover-bg);
 }
 
 .testimonial footer {
   margin-top: 1rem;
   font-weight: 700;
   color: var(--accent);
+}
+
+/* How It Works Section */
+.howItWorks {
+  background: var(--bg);
+  color: var(--text);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.howItWorks h2 {
+  font-size: 2.2rem;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem; /* أقلت المسافة */
+  flex-wrap: nowrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stepCard {
+  background: var(--card-bg);
+  padding: 2rem 3rem; /* زودت البادينج */
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgb(0 245 212 / 0.3);
+  max-width: 380px; /* عرض أكبر */
+  cursor: default;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.stepCard:hover {
+  background: var(--hover-bg);
+  transform: translateY(-5px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .right img {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .featuresList,
+  .testimonials,
+  .steps {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }

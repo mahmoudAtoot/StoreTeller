@@ -2,121 +2,121 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  /* أقل من 100% */
-  background-color: #0f172a;
+  min-height: 100vh;
+  background-color: var(--bg); /* نفس الخلفية */
   animation: fadeIn 1s ease-in-out;
-  /* مسافة بسيطة من الأعلى */
-  
+  padding: 1rem;
 }
 
 .loginFormWrapper {
-  background-color: #1e293b;
-  backdrop-filter: blur(10px);
-  padding: 1rem;
-  /* أقل من 3rem */
-  border-radius: 1.25rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  background-color: var(--card-bg); /* نفس لون الكارد */
+  backdrop-filter: blur(8px);
+  padding: 2.5rem 3rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 245, 212, 0.25);
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  color: var(--text);
   animation: slideUp 0.8s ease-in-out;
-  color: #f1f5f9;
 }
 
 .loginHeader h1 {
-  font-size: 2.2rem;
-  color: #38bdf8;
-  margin-bottom: 0.2rem;
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
   text-align: center;
+  font-weight: 800;
 }
 
 .loginHeader h2 {
-  font-size: 1.2rem;
-  color: #cbd5e1;
+  font-size: 1.1rem;
+  color: #a0aec0;
   text-align: center;
-  margin-bottom: 0.4rem;
-}
-
-.loginHeader p {
-  text-align: center;
-  color: #94a3b8;
   margin-bottom: 1.5rem;
 }
 
 .formGroup {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .formGroup label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #e2e8f0;
-  font-weight: 500;
+  color: var(--secondary);
+  font-weight: 600;
 }
 
 .formGroup input {
   width: 100%;
-  padding: 0.6rem 0.9rem;
-  /* أقل من قبل */
-  border: 1px solid #334155;
-  border-radius: 0.75rem;
-  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1.8px solid #334155;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  background-color: var(--bg);
+  color: var(--text);
   outline: none;
-  background-color: #0f172a;
-  color: #f1f5f9;
-  transition: border 0.3s ease;
+  transition: border-color 0.3s ease;
+}
+
+.formGroup input::placeholder {
+  color: #64748b;
 }
 
 .formGroup input:focus {
-  border-color: #38bdf8;
+  border-color: var(--accent);
 }
 
 .loginButton {
   width: 100%;
-  padding: 0.6rem;
-  background: linear-gradient(to right, #38bdf8, #0ea5e9);
-  color: white;
+  padding: 0.75rem;
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  color: #000;
   border: none;
-  border-radius: 0.75rem;
-  font-size: 1rem;
+  border-radius: 1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
   cursor: pointer;
   transition: background 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 245, 212, 0.4);
 }
 
 .loginButton:hover {
-  background: linear-gradient(to right, #0ea5e9, #0284c7);
+  background: linear-gradient(90deg, var(--secondary), var(--accent));
+  box-shadow: 0 6px 20px rgba(0, 245, 212, 0.6);
 }
 
 .errorMessage {
   background-color: #fee2e2;
   color: #b91c1c;
-  padding: 0.6rem;
-  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
   margin-bottom: 1rem;
   text-align: center;
+  font-weight: 600;
 }
 
 .loginFooter {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   text-align: center;
   color: #94a3b8;
+  font-size: 0.9rem;
 }
 
 .loginFooter a {
-  color: #38bdf8;
+  color: var(--accent);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .loginFooter a:hover {
   text-decoration: underline;
 }
 
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
-
   to {
     opacity: 1;
   }
@@ -124,10 +124,11 @@
 
 @keyframes slideUp {
   from {
-    transform: translateY(50px);
+    transform: translateY(40px);
+    opacity: 0;
   }
-
   to {
     transform: translateY(0);
+    opacity: 1;
   }
 }

@@ -1,4 +1,4 @@
 .productImage {
-    max-width: 100%;
-    height: auto;
+    max-width: 100%;  /* الصورة لا تتعدى عرض الحاوية */
+    height: auto;     /* يحافظ على نسبة ارتفاع الصورة تلقائياً */
 }

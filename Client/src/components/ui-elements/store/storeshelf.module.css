@@ -1,19 +1,43 @@
 .shelfContainer {
-  position: relative;
-  width: 100%;
-  height: 150px; /* Height for a single shelf */
-  background-color: #ffffff; /* White background for individual shelves */
-  border-radius: 8px;
-  margin-bottom: 0; /* Managed by gap in shelfcontainer */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+
+    position: relative;
+    /* مهم لوضع العناصر بشكل مطلق داخل الحاوية */
+    width: 100%;
+    min-height: 200px;
+    /* ارتفاع كافي لاستيعاب العناصر والرف */
+    display: flex;
+    justify-content: space-around;
+    /* توزيع العناصر بشكل متساوٍ أفقياً */
+    align-items: flex-end;
+    /* محاذاة العناصر لأسفل الحاوية */
+    padding-bottom: 50px;
+    /* مساحة في الأسفل لحجز مكان الرف */
+    box-sizing: border-box;
+    /* للتأكد من حساب الحشو ضمن الأبعاد */
 }
 
 .productWrapper {
-  position: absolute;
-  width: 18%; /* Adjust as needed for spacing */
-  height: 120px; /* Fixed height for consistent item sizing */
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  z-index: 10; /* Higher z-index for items */
+    position: absolute;
+    width: 18%;
+    /* عرض ثابت للعناصر، يمكن تعديله حسب الحاجة */
+    height: 120px;
+    /* ارتفاع ثابت للعناصر لضمان تناسق الحجم */
+    display: flex;
+    justify-content: center;
+    /* تمركز المحتوى أفقياً */
+    align-items: flex-end;
+    /* محاذاة المحتوى لأسفل */
+    z-index: 10;
+    /* طبقة أعلى للعناصر فوق الرف */
+    bottom: 50px;
+    /* لضبط موضع العناصر فوق الرف */
+    transition: transform 0.3s ease;
+    /* إضافة انتقالات سلسة عند التغيير */
+}
+
+.productWrapper:hover {
+    transform: translateY(-10px);
+    /* تأثير رفع بسيط عند المرور بالفأرة */
+    z-index: 20;
+    /* رفع العنصر فوق الآخرين عند التفاعل */
 }
