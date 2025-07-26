@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './productaddpage.module.css';
+import styles from './ProductAddPage.module.css';
 import { ItemInfoForm, UploadImages } from '../ui-elements/owner/productpage';
 import Product2d from '../shared/product2d';
 import ProductGif from '../shared/productgif';
@@ -15,7 +15,7 @@ const ProductAddPage = () => {
 
   const handleImageUpload = (files) => {
     if (files.length > 0) {
-      const file = files[0]; // Assuming only one image for 2D preview
+      const file = files[0];
       setSelectedImage(file);
       setImagePreviewUrl(URL.createObjectURL(file));
     } else {
@@ -26,14 +26,12 @@ const ProductAddPage = () => {
 
   const handleUploadProduct = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log('Product Info:', productInfo);
     console.log('Selected Image:', selectedImage);
-    // In a real application, you would send productInfo and selectedImage to your backend API
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ backgroundColor: '#111123' }}>
       <div className={styles.leftColumn}>
         <div className={styles.uploadSection}>
           <h2>Upload Product Pictures</h2>
@@ -61,7 +59,9 @@ const ProductAddPage = () => {
               <div className={styles.placeholder}>Clickable Demo</div>
             )}
           </div>
-          <button onClick={handleUploadProduct} className={styles.uploadButton}>Upload Product</button>
+          <button onClick={handleUploadProduct} className={styles.uploadButton}>
+            Upload Product
+          </button>
         </div>
       </div>
     </div>

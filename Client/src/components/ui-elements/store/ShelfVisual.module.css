@@ -1,9 +1,9 @@
 .shelfVisualContainer {
 
     position: relative;
-    background-color: #5b3722;
+    background-color: #38efd4;
     /* خشب داكن فخم */
-    border: 4px solid #3a2414;
+    border: 4px solid #38efd4;
     /* إطار أغمق */
     border-radius: 0.75rem;
     height: 200px;
@@ -26,7 +26,7 @@
     left: 0;
     width: 100%;
     height: 22px;
-    background: linear-gradient(to bottom, #7b4c2e, #3d2415);
+    background: linear-gradient(to bottom, #38efd4, #3d2415);
     /* تأثير خشبي */
     transform: rotateX(-60deg) translateY(0);
     transform-origin: top center;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Register.module.css';
-import { Footer , Navbar } from '../shared';
+import { Footer, Navbar } from '../shared';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -25,23 +25,20 @@ const Register = () => {
         setError('');
 
         if (formData.password !== formData.confirmPassword) {
-            return setError("Passwords do not match.");
+            return setError('Passwords do not match.');
         }
 
         setLoading(true);
         try {
             const response = await fetch('http://localhost:8000/api/auth/register', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
-
             const data = await response.json();
 
             if (response.ok) {
-                navigate('/login');
+                navigate('/admin-dashboard');
             } else {
                 setError(data.message || 'Registration failed.');
             }
@@ -143,7 +140,9 @@ const Register = () => {
                     </form>
 
                     <div className={styles.loginFooter}>
-                        <p>Already have an account? <Link to="/login">Login here</Link></p>
+                        <p>
+                            Already have an account? <Link to="/login">Login here</Link>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -153,4 +152,3 @@ const Register = () => {
 };
 
 export default Register;
-
