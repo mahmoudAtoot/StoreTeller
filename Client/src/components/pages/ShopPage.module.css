@@ -2,8 +2,21 @@
   display: flex;
   height: calc(100vh - 120px); /* الارتفاع محسوب ليناسب الشاشة مع خصم مساحة النافبار أو الفوتر */
   padding: 1rem;
+  background-color: #f8f9fa; /* Lighter background for a modern feel */
 }
 
+
+
+.cashierSection {
+  flex: 1; /* Keep cashier section relatively smaller */
+  padding-left: 1rem;
+  /* Removed border-left for a cleaner, more integrated look */
+  background-color: #fff; /* White background for cashier section */
+  border-radius: 8px; /* Slightly rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  display: flex;
+  flex-direction: column;
+}
 .mainContent {
   flex: 1; /* ياخذ باقي المساحة المتاحة */
   padding-right: 1rem;
@@ -12,8 +25,3 @@
   flex-direction: column; /* لترتيب العناصر داخله عمودياً */
 }
 
-.cashierSection {
-  flex-basis: 25%; /* يشغل 25% من عرض الحاوية */
-  padding-left: 1rem;
-  border-left: 1px solid #eee; /* خط فاصل على اليسار */
-}

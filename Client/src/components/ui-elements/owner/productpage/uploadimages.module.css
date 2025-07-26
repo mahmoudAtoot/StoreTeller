@@ -1,3 +1,32 @@
 .container {
-    padding: 1rem;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.container.dragging {
+  border-color: #007bff;
+  background-color: #f0f8ff;
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.uploadIcon {
+  font-size: 2rem;
+}
+
+.dragDropText {
+  color: #999;
 }

@@ -1,31 +1,30 @@
 import React from 'react';
 import Product2D from '../../shared/product2d';
-import { ShelfVisual } from './'; // Import ShelfVisual
+import { ShelfVisual } from './';
 import styles from './storeshelf.module.css';
 
-const StoreShelf = ({ isOwner, onProductClick }) => {
+const StoreShelf = ({ isOwner, onProductClick, products, onProductHover }) => {
     console.log('StoreShelf: onProductClick prop:', onProductClick);
-    // Placeholder for items on a shelf
-    const items = [
-        { id: 1, name: 'Product 1', price: '10.00', image: '' },
-        { id: 2, name: 'Product 2', price: '20.00', image: '' },
-        { id: 3, name: 'Product 3', price: '30.00', image: '' },
-        { id: 4, name: 'Product 4', price: '40.00', image: '' },
-        { id: 5, name: 'Product 5', price: '50.00', image: '' },
-    ];
+    // Assuming products are passed as a prop now
+
+    const shelfBottom = 0; // Fixed bottom position for a single shelf
 
     return (
         <div className={styles.shelfContainer}>
-            {items.map((item, index) => (
+            <ShelfVisual style={{ bottom: `${shelfBottom}px` }} />
+            {products.map((item, itemIndex) => (
                 <div
-                    key={item.id}
+                    key={item.id} // Assuming item.id is unique across all products
                     className={styles.productWrapper}
-                    style={{ left: `${(index / items.length) * 100 + (100 / items.length / 2)}%`, transform: `translateX(-50%)` }} /* Position items evenly */
+                    style={{
+                        left: `${(itemIndex / products.length) * 100 + (100 / products.length / 2)}%`,
+                        transform: `translateX(-50%)`,
+                        bottom: `${shelfBottom + 10}px`, // Position above the shelf visual
+                    }}
                 >
-                    <Product2D product={item} isOwner={isOwner} onProductClick={onProductClick} />
+                    <Product2D product={item} isOwner={isOwner} onProductClick={onProductClick} onProductHover={onProductHover} />
                 </div>
             ))}
-            <ShelfVisual />
         </div>
     );
 };
