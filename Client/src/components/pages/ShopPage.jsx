@@ -17,9 +17,7 @@ function ShopPage() {
                 <CategorySelector />
                 <ShelfContainer onProductClick={onProductClick} onProductHover={setHoveredProduct} />
             </div>
-            <div className={styles.cashierSection}>
-                <Cashier hoveredProduct={hoveredProduct} />
-            </div>
+            <Cashier hoveredProduct={hoveredProduct} className={styles.cashierSection} />
         </div>
     );
 }

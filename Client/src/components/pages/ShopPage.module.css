@@ -8,7 +8,7 @@
 
 
 .cashierSection {
-  flex: 1; /* Keep cashier section relatively smaller */
+  flex: 0 0 20%; /* Set cashier section to 20% width */
   padding-left: 1rem;
   /* Removed border-left for a cleaner, more integrated look */
   background-color: #fff; /* White background for cashier section */
