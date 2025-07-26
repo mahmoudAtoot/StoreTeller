@@ -1,33 +1,34 @@
 .productContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end; /* Align items to the bottom of their container */
-    padding: 0; /* Removed padding */
-    padding-bottom: 10px;
-    cursor: pointer;
-    position: relative; /* Keep relative for flow within shelf */
-    height: 100%; /* Ensure it takes full height of shelf slot */
-    width: 100%; /* Allow flexbox to control width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center the image within its container */
+  cursor: pointer;
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .productImage {
-    max-width: 100%;
-    max-height: 100%; /* Allow image to take full height */
-    object-fit: contain;
-    filter: drop-shadow(0px 10px 8px rgba(0, 0, 0, 0.3)); /* Softer, blob-like shadow */
-    /* No transform here */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2)); /* Softer shadow */
 }
 
 .editButton {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  background-color: #0056b3;
 }

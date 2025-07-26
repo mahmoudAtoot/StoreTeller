@@ -1,6 +1,5 @@
 import React from 'react';
 import ProductGif from '../../shared/productgif';
-import Counter from './counter';
 import styles from './itemdisplay.module.css';
 
 const ItemDisplay = ({ product, onClose }) => {

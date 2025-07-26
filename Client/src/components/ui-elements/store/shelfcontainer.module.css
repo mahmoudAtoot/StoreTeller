@@ -1,12 +1,10 @@
 .containerFluid {
-    width: 100%;
-    padding: 20px;
-    background-color: #4a4a4a; /* Darker, muted wall color */
-    border-radius: 8px;
-    min-height: 500px;
-    position: relative; /* Needed for absolute positioning of shelves */
-    overflow: hidden; /* Hide anything that goes outside */
-    display: flex; /* Added flexbox */
-    flex-direction: column; /* Stack shelves vertically */
-    align-items: center; /* Center shelves horizontally */
+  flex: 1;
+  background-color: #e9ecef; /* Light grey background for the shelf area */
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Space between shelves */
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
 }
