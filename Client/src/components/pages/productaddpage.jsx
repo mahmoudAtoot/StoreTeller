@@ -79,7 +79,7 @@ const ProductAddPage = () => {
         },
       });
       console.log('Product uploaded successfully:', response.data);
-      alert('Product uploaded successfully!');
+      navigate('/'); // Redirect to shop page after successful upload
       // Optionally clear form or redirect
       setProductInfo({ name: '', price: '', description: '', category: '' });
       setSelectedImage(null);

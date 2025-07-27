@@ -18,10 +18,32 @@ function ShopPage() {
     const { isOwner, shopName: authShopName } = useAuth(); // Rename shopName from useAuth to avoid conflict
     const navigate = useNavigate();
     const { storename } = useParams(); // Get storename from URL
+    const [products, setProducts] = useState([]); // State to hold products
 
     const currentShopName = isOwner ? authShopName : storename; // Determine which shopName to use
 
-    
+    const fetchProducts = async () => {
+        let url = '/api/products';
+        if (currentShopName) {
+            url += `?shopName=${currentShopName}`;
+        }
+
+        try {
+            const res = await axios.get(url);
+            setProducts(res.data);
+        } catch (err) {
+            console.error("Error fetching products:", err);
+        }
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    }, [currentShopName]); // Fetch all products when shopName changes
+
+    const filteredProducts = selectedCategory === 'All'
+        ? products
+        : products.filter(product => product.category === selectedCategory);
+
 
     const handleEditClick = (product) => {
         setProductToEdit(product);
@@ -36,9 +58,9 @@ function ShopPage() {
     const handleSaveEditedProduct = async (updatedProduct) => {
         try {
             await axios.put(`/api/products/${updatedProduct._id}`, updatedProduct);
-            // Optionally, re-fetch products or update state to reflect changes
             console.log('Product updated successfully!', updatedProduct);
             handleCloseModal();
+            fetchProducts(); // Refresh products after successful edit
         } catch (error) {
             console.error('Error updating product:', error);
             alert('Error updating product. Please try again.');
@@ -69,6 +91,7 @@ function ShopPage() {
                     selectedCategory={selectedCategory}
                     onEditClick={handleEditClick} // Pass the edit handler
                     shopName={currentShopName} // Pass the determined shopName to ShelfContainer
+                    products={filteredProducts} // Pass the filtered products state
                 />
             </div>
             <Cashier hoveredProduct={hoveredProduct} className={styles.cashierSection} />
@@ -77,7 +100,7 @@ function ShopPage() {
                 <EditProductModal
                     product={productToEdit}
                     onClose={handleCloseModal}
-                    onSave={handleSaveEditedProduct}
+                    onProductUpdated={fetchProducts}
                 />
             )}
         </div>
