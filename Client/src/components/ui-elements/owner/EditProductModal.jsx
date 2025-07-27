@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from './EditProductModal.module.css';
+import axios from 'axios';
 
-const EditProductModal = ({ product, onClose, onSave }) => {
+const EditProductModal = ({ product, onClose, onProductUpdated }) => {
     const [editedProduct, setEditedProduct] = useState(product);
 
     useEffect(() => {
@@ -18,7 +19,21 @@ const EditProductModal = ({ product, onClose, onSave }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSave(editedProduct);
+        onProductUpdated(editedProduct);
+    };
+
+    const handleDelete = async () => {
+        if (window.confirm('Are you sure you want to delete this product?')) {
+            try {
+                await axios.delete(`/api/products/${product._id}`);
+                alert('Product deleted successfully!');
+                onClose();
+                onProductUpdated(); // Trigger refresh in parent component
+            } catch (error) {
+                console.error('Error deleting product:', error);
+                alert('Error deleting product. Please try again.');
+            }
+        }
     };
 
     return (
@@ -51,6 +66,7 @@ const EditProductModal = ({ product, onClose, onSave }) => {
                     <div className={styles.modalActions}>
                         <button type="submit">Save Changes</button>
                         <button type="button" onClick={onClose}>Cancel</button>
+                        <button type="button" onClick={handleDelete} className={styles.deleteButton}>Delete</button>
                     </div>
                 </form>
             </div>

@@ -17,14 +17,11 @@
     box-shadow: 0 0 20px rgba(0, 245, 212, 0.15);
     overflow-y: auto;
     max-height: 100%;
+    transition: all 0.3s ease; /* Add transition for smooth hover */
 }
 
-/* لو بدك تدي كل رف شكل خاص ممكن تحط كلاس للسلف و تضيف أنيميشن مثلًا */
-
-/* مثال: عند تمرير الفأرة على رف معين */
-.containerFluid>div:hover {
+.containerFluid:hover {
     box-shadow: 0 0 25px var(--accent);
     background-color: var(--hover-bg);
-    transition: all 0.3s ease;
     border-radius: 20px;
 }
