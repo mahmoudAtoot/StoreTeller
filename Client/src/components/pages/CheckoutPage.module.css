@@ -1,3 +1,173 @@
 .container {
-    padding: 2rem;
+    padding: 3rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #2c3e50; /* Darker, professional blue-grey */
+    margin-bottom: 2.5rem;
+    text-align: center;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #3498db; /* Accent blue */
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+h4 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #34495e; /* Slightly lighter than h1 */
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #ecf0f1; /* Light grey separator */
+    padding-bottom: 0.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #34495e;
+}
+
+.form-control {
+    border-radius: 0.35rem;
+    border: 1px solid #ced4da;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: none;
+    margin-bottom: 1rem; /* Added margin-bottom for form controls */
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+.form-check {
+    margin-bottom: 0.75rem; /* Spacing between radio buttons */
+}
+
+.form-check-input {
+    margin-top: 0.3rem;
+    margin-right: 0.5rem;
+}
+
+.form-check-label {
+    font-size: 1rem;
+    color: #555;
+}
+
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* Spacing between payment method options */
+    margin-bottom: 1.5rem; /* Spacing below payment methods section */
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 0.35rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+    box-shadow: 0 6px 8px rgba(52, 152, 219, 0.3);
+}
+
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #f8f9fa; /* Light background for header */
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1.2rem 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.list-group-item {
+    border: none;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 0.5rem; /* Added margin-bottom for list items */
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0; /* Remove margin for the last item */
+}
+
+.list-group-item h6 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.list-group-item small {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.list-group-item span {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.list-group-item strong {
+    font-size: 1.3rem;
+    color: #27ae60; /* Green for total price */
+}
+
+.text-muted {
+    color: #7f8c8d !important;
+}
+
+.invalid-feedback {
+    font-size: 0.9rem;
+    color: #e74c3c; /* Red for error messages */
+    margin-top: -0.75rem; /* Adjust to pull up closer to the input */
+    margin-bottom: 1rem; /* Ensure it takes up space */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 2rem 0.5rem;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h4 {
+        font-size: 1.4rem;
+    }
+
+    .btn-primary {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+    }
 }
