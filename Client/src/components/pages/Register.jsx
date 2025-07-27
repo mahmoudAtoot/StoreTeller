@@ -42,7 +42,12 @@ const Register = () => {
 
             if (response.ok) {
                 login(data.user, !!data.shop, data.shop);
-                navigate('/admin-dashboard');
+                if (data.shop != (null || undefined)) {
+                    navigate('/' + data.shop.name);
+                } else {
+                    navigate('/');
+                }
+
             } else {
                 setError(data.message || 'Registration failed.');
             }
