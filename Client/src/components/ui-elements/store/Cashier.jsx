@@ -13,7 +13,7 @@ const Cashier = ({ hoveredProduct }) => {
       const response = await axios.post(
         'https://openrouter.ai/api/v1/chat/completions',
         {
-          model: "deepseek/deepseek-chat", // OpenRouter model format
+          model: "deepseek/deepseek-chat-v3-0324:free", 
           messages: [
             { role: 'system', content: 'You are a helpful cashier assistant.' },
             { role: 'user', content: userMessage }
@@ -22,7 +22,7 @@ const Cashier = ({ hoveredProduct }) => {
         },
         {
           headers: {
-            Authorization: "Bearer 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",
+            Authorization: "Bearer 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",
             'Content-Type': 'application/json'
           }
         }
