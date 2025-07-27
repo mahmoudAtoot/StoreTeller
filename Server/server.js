@@ -18,5 +18,7 @@ app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));
 require('./routes/auth.rout')(app);
 require('./routes/store.route')(app);
 
+require('./config/mongoose.config');
+
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Listening on port: ${port}`));
