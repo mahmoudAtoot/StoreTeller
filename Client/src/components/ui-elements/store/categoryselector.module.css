@@ -10,9 +10,12 @@
     box-shadow: 0 4px 12px rgba(0, 245, 212, 0.08);
     border: 1px solid var(--hover-bg);
     flex-wrap: wrap;
-    
-}
+    margin-top: 20px;
 
+}
+.categoryBar:hover {
+    box-shadow: 0 0 25px var(--accent);
+}
 .categoryButton {
     background-color: var(--bg);
     border: 2px solid var(--hover-bg);
@@ -28,6 +31,7 @@
     background-color: var(--hover-bg);
     color: var(--accent);
     border-color: var(--accent);
+
 }
 
 .categoryButton.active {
@@ -35,5 +39,5 @@
     color: #000;
     border-color: transparent;
     box-shadow: 0 4px 14px rgba(0, 245, 212, 0.3);
-    
+
 }
