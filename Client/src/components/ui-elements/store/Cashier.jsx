@@ -22,7 +22,7 @@ const Cashier = ({ hoveredProduct }) => {
         },
         {
           headers: {
-            Authorization: "Bearer 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",
+            Authorization: "Bearer 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",
             'Content-Type': 'application/json'
           }
         }
