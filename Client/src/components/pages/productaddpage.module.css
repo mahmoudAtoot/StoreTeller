@@ -1,35 +1,61 @@
-/* ProductAddPage.module.css */
-
-.container {
-  background-color: #111123;
-  min-height: 100vh;
-  color: #fff;
-  padding: 2rem;
-  display: flex;
-  gap: 2rem;
+:root {
+  --bg: #0f0f1b;
+  --text: #f3f3f3;
+  --accent: #00f5d4;
+  --secondary: #5eead4;
+  --card-bg: #111123;
+  --hover-bg: #15152b;
 }
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3rem;
+  background-color: var(--bg);
+  color: var(--text);
+  gap: 2rem;
+  min-height: 100vh;
+}
+
+/* Columns */
 .leftColumn,
 .rightColumn {
   flex: 1;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* Shared Card Style */
 .uploadSection,
 .gifPreview,
 .detailsSection,
 .demoSection {
-  background: #1e1e2a;
-  border: 1px solid #33334d;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 0 12px #00ffcc33;
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Buttons Group */
+.uploadSection:hover,
+.gifPreview:hover,
+.detailsSection:hover,
+.demoSection:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px var(--accent);
+}
+
+/* Headings */
+.uploadSection h2,
+.gifPreview h2,
+.detailsSection h2 {
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+/* Action buttons */
 .actionButtons {
   display: flex;
   gap: 1rem;
@@ -37,64 +63,77 @@
 }
 
 .generateButton,
-.tryAgainButton {
-  background: transparent;
-  border: 1px solid #00ffcc;
-  padding: 0.75rem 1.5rem;
-  color: #00ffcc;
-  border-radius: 6px;
+.tryAgainButton,
+.uploadButton {
+  padding: 0.9rem 2rem;
+  border-radius: 40px;
+  font-weight: bold;
+  border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 1rem;
 }
 
-.generateButton:hover,
+.generateButton {
+  background: var(--accent);
+  color: #000;
+}
+
+.generateButton:hover {
+  background: #19f8e8;
+}
+
+.tryAgainButton {
+  background: transparent;
+  border: 2px solid var(--secondary);
+  color: var(--secondary);
+}
+
 .tryAgainButton:hover {
-  background: #00ffcc22;
+  background: var(--secondary);
+  color: #000;
 }
 
-/* GIF and Upload Sections */
-.gifPreview h2,
-.uploadSection h2,
-.detailsSection h2 {
-  color: #00ffcc;
-  margin-bottom: 1rem;
-}
-
-/* Demo Preview */
-.clickableDemo {
-  border: 2px dashed #00ffcc66;
-  border-radius: 8px;
+.uploadButton {
+  background: var(--accent);
+  color: #000;
   width: 100%;
-  height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
 }
 
-.placeholder {
-  color: #00ffcc88;
+.uploadButton:hover {
+  background: #19f8e8;
+}
+
+/* Product Image Preview */
+.clickableDemo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--hover-bg);
+  border-radius: 16px;
+  height: 260px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 15px rgba(0, 245, 212, 0.1);
 }
 
 .imagePreview {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  border-radius: 6px;
+  object-fit: cover;
 }
 
-/* Upload Button */
-.uploadButton {
-  background: #00ffcc;
-  color: #000;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
+.placeholder {
+  font-size: 1.2rem;
+  color: var(--secondary);
+  text-align: center;
 }
 
-.uploadButton:hover {
-  background: #00e6b3;
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 2rem;
+  }
 }

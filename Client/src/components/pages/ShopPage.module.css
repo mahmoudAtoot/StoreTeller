@@ -1,27 +1,79 @@
+:root {
+  --bg: #0f0f1b;
+  --text: #f3f3f3;
+  --accent: #00f5d4;
+  --secondary: #5eead4;
+  --card-bg: #111123;
+  --hover-bg: #15152b;
+}
+
 .shopPageContainer {
   display: flex;
-  height: calc(100vh - 120px); /* الارتفاع محسوب ليناسب الشاشة مع خصم مساحة النافبار أو الفوتر */
-  padding: 1rem;
-  background-color: var(--bg); /* Lighter background for a modern feel */
+  height: calc(100vh - 120px); /* حسب الهيدر والفوتر */
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 1.5rem;
+  gap: 2rem;
+  overflow: hidden;
 }
 
-
-
-.cashierSection {
-  flex: 0 0 20%; /* Set cashier section to 20% width */
-  padding-left: 1rem;
-  /* Removed border-left for a cleaner, more integrated look */
-  background-color: #111123; /* White background for cashier section */
-  border-radius: 8px; /* Slightly rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+/* المحتوى الرئيسي (العمود الأيسر) */
+.mainContent {
+  flex: 1;
   display: flex;
   flex-direction: column;
-}
-.mainContent {
-  flex: 1; /* ياخذ باقي المساحة المتاحة */
+  gap: 1.5rem;
+  overflow-y: auto;
   padding-right: 1rem;
-  overflow-y: auto; /* يضيف تمرير عمودي لو المحتوى كبير */
-  display: flex; /* يستخدم flexbox */
-  flex-direction: column; /* لترتيب العناصر داخله عمودياً */
 }
 
+/* قسم الكاشير (العمود الأيمن) */
+.cashierSection {
+  width: 340px;
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.15);
+  transition: all 0.3s ease;
+  position: sticky;
+  top: 1.5rem;
+  height: fit-content;
+}
+
+.cashierSection:hover {
+  box-shadow: 0 0 30px var(--accent);
+  background: var(--hover-bg);
+}
+
+/* Scrollbar مخصص */
+.mainContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mainContent::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 10px;
+}
+
+.mainContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .shopPageContainer {
+    flex-direction: column;
+  }
+
+  .mainContent {
+    padding-right: 0;
+    max-height: none;
+  }
+
+  .cashierSection {
+    width: 100%;
+    position: relative;
+    top: unset;
+    margin-top: 1.5rem;
+  }
+}
