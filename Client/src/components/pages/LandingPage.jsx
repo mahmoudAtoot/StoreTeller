@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./LandingPage.module.css";
 import { Navbar, Footer } from "../shared";
 import { FaTruck, FaHeadset, FaUndoAlt, FaCreditCard, FaUserCircle } from "react-icons/fa";
