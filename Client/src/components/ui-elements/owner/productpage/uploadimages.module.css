@@ -5,15 +5,24 @@
   text-align: center;
   cursor: pointer;
   transition: border-color 0.2s, background-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #111123;
+
 }
 
 .container.dragging {
   border-color: #007bff;
   background-color: #f0f8ff;
+  
 }
 
 .fileInput {
   display: none;
+  
 }
 
 .uploadLabel {
@@ -21,6 +30,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  
 }
 
 .uploadIcon {

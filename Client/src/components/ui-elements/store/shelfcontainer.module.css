@@ -1,20 +1,30 @@
+:root {
+    --bg: #0f0f1b;
+    --text: #f3f3f3;
+    --accent: #00f5d4;
+    --card-bg: #111123;
+    --hover-bg: #15152b;
+}
+
 .containerFluid {
-
-    width: 100%;
-    padding: 1.5rem;
-    background: #111123;
-    /* جدار خلفي داكن متدرج */
-    border-radius: 1.25rem;
-    min-height: 500px;
-    position: relative;
-    overflow: hidden;
-
     display: flex;
     flex-direction: column;
-    align-items: center;
-
+    gap: 1.5rem;
+    background-color: var(--bg);
     color: var(--text);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    border: 1px solid #2f2f45;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.15);
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+/* لو بدك تدي كل رف شكل خاص ممكن تحط كلاس للسلف و تضيف أنيميشن مثلًا */
+
+/* مثال: عند تمرير الفأرة على رف معين */
+.containerFluid>div:hover {
+    box-shadow: 0 0 25px var(--accent);
+    background-color: var(--hover-bg);
+    transition: all 0.3s ease;
+    border-radius: 20px;
 }

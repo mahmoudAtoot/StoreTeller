@@ -1,184 +1,124 @@
-/* حاوية الصفحة */
+:root {
+  --bg: #0f0f1b;
+  --text: #f3f3f3;
+  --accent: #00f5d4;
+  --secondary: #5eead4;
+  --card-bg: #111123;
+  --hover-bg: #15152b;
+}
+
 .loginContainer {
-  position: relative;
+  background-color: var(--bg);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: var(--bg);
-  padding: 1rem;
-  animation: zoomIn 0.6s ease-in-out forwards;
-  overflow: hidden;
-}
-
-/* خلفية تأثير ضوء خفيف */
-.loginContainer::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(0, 245, 212, 0.06), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03), transparent 40%);
-  animation: floatLights 40s linear infinite;
-  z-index: 0;
-  filter: blur(80px);
-  pointer-events: none;
-}
-
-/* نموذج التسجيل */
-.loginFormWrapper {
-  position: relative;
-  z-index: 1;
-  background-color: var(--card-bg);
-  backdrop-filter: blur(8px);
-  padding: 2.5rem 3rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0, 245, 212, 0.25);
-  width: 100%;
-  max-width: 420px;
+  padding: 2rem;
   color: var(--text);
-  animation: slideUp 0.7s ease-in-out forwards;
 }
 
-/* العناوين */
+.loginFormWrapper {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.15);
+  max-width: 540px; /* زودنا العرض */
+  width: 100%;
+  transition: 0.3s ease-in-out;
+}
+
+
+.loginFormWrapper:hover {
+  box-shadow: 0 0 30px var(--accent);
+  background-color: var(--hover-bg);
+}
+
 .loginHeader h1 {
-  font-size: 2.5rem;
   color: var(--accent);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
   text-align: center;
-  font-weight: 800;
+  font-size: 2rem;
 }
 
 .loginHeader h2 {
-  font-size: 1.1rem;
-  color: #a0aec0;
+  margin-bottom: 0.25rem;
   text-align: center;
-  margin-bottom: 1.5rem;
 }
 
 .loginHeader p {
   text-align: center;
-  color: #7f8fa4;
-  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
 }
 
-/* الفورم */
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
 .formGroup {
-  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .formGroup label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--secondary);
-  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: var(--text);
 }
 
 .formGroup input {
-  width: 100%;
   padding: 0.75rem 1rem;
-  border: 1.8px solid #334155;
-  border-radius: 1rem;
-  font-size: 1.1rem;
-  background-color: var(--bg);
-  color: var(--text);
+  border-radius: 12px;
+  border: none;
   outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.formGroup input::placeholder {
-  color: #64748b;
+  background-color: var(--hover-bg);
+  color: var(--text);
+  font-size: 0.95rem;
+  transition: border 0.3s ease;
 }
 
 .formGroup input:focus {
-  border-color: var(--accent);
+  border: 1px solid var(--accent);
 }
 
-/* زر التسجيل */
 .loginButton {
-  width: 100%;
-  padding: 0.75rem;
-  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  padding: 0.8rem 1rem;
+  background-color: var(--accent);
   color: #000;
   border: none;
-  border-radius: 1rem;
-  font-size: 1.15rem;
-  font-weight: 700;
+  border-radius: 14px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 245, 212, 0.4);
+  transition: background-color 0.3s ease;
 }
 
 .loginButton:hover {
-  background: linear-gradient(90deg, var(--secondary), var(--accent));
-  box-shadow: 0 6px 20px rgba(0, 245, 212, 0.6);
+  background-color: var(--secondary);
 }
 
-/* رسالة الخطأ */
 .errorMessage {
-  background-color: #fee2e2;
-  color: #b91c1c;
-  padding: 0.6rem 1rem;
-  border-radius: 0.75rem;
-  margin-bottom: 1rem;
+  background-color: #f44336;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
   text-align: center;
-  font-weight: 600;
 }
 
-/* فوتر الفورم */
 .loginFooter {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   text-align: center;
-  color: #94a3b8;
   font-size: 0.9rem;
 }
 
 .loginFooter a {
   color: var(--accent);
   text-decoration: none;
-  font-weight: 600;
 }
 
 .loginFooter a:hover {
   text-decoration: underline;
-}
-
-/* أنيميشن الخلفية */
-@keyframes floatLights {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  50% {
-    transform: rotate(180deg) scale(1.05);
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
-  }
-}
-
-/* أنيميشن التكبير */
-@keyframes zoomIn {
-  from {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* أنيميشن الحركة من الأسفل للأعلى */
-@keyframes slideUp {
-  from {
-    transform: translateY(40px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
