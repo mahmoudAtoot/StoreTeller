@@ -26,6 +26,16 @@
 .navLinks {
     display: flex;
     gap: 1.5rem;
+    background-color: #0f0f1b;
+    color: white;
+
+
+}
+
+.navLinks :hover {
+    background-color: var(--accent);
+    color: #000;
+
 }
 
 .navLinks a {
