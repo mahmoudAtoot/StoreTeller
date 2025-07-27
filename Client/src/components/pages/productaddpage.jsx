@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './ProductAddPage.module.css';
 import { ItemInfoForm, UploadImages } from '../ui-elements/owner/productpage';
 import Product2d from '../shared/product2d';
 import ProductGif from '../shared/productgif';
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const ProductAddPage = () => {
+  const { isOwner, shopName } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isOwner || !shopName) {
+      navigate('/'); // Redirect if not an owner or no shop associated
+    }
+  }, [isOwner, shopName, navigate]);
+
+  if (!isOwner || !shopName) {
+    return null; // Or a loading spinner
+  }
   const [productInfo, setProductInfo] = useState({
     name: '',
     price: '',

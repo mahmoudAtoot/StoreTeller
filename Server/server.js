@@ -1,13 +1,22 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
-const cors = require('cors')
-require('dotenv').config()
-require("./config/mongoose.config");
-const PORT = process.env.PORT;
-app.use(cors())
+const dotenvResult = require('dotenv').config();
+
+if (dotenvResult.error) {
+    console.error("Error loading .env file:", dotenvResult.error);
+} else {
+    console.log(".env variables loaded:", dotenvResult.parsed);
+}
+
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const UserRoutes = require("./routes/auth.rout");
-UserRoutes(app);
-app.get('/', (req, res) => res.send('Hello from server!'));
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));
+
+// Routes
+require('./routes/auth.rout')(app);
+require('./routes/store.route')(app);
+
+const port = process.env.PORT || 8000;
+app.listen(port, () => console.log(`Listening on port: ${port}`));

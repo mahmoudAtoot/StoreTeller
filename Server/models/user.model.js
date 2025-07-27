@@ -32,6 +32,11 @@ const userSchema = new mongoose.Schema({
             },
             message: props => `${props.value} is not a strong enough password!`
         }
+    },
+    shop: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Shop',
+        default: null
     }
 }, { timestamps: true });
 
