@@ -9,7 +9,7 @@
 
 .shopPageContainer {
   display: flex;
-  height: calc(100vh - 120px); /* حسب الهيدر والفوتر */
+  height:100%; /* حسب الهيدر والفوتر */
   background-color: var(--bg);
   color: var(--text);
   padding: 1.5rem;
