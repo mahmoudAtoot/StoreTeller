@@ -1,13 +1,38 @@
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #0f0f1b;
+    color: #f3f3f3;
+}
+
 .container {
+    flex-grow: 1;
+    /* يملأ المساحة المتبقية */
+    display: flex;
+    /* لو بدك توزيع داخلي ب flex */
+    flex-direction: column;
+    /* ترتيب عمودي */
     padding: 3rem 1rem;
     max-width: 1000px;
     margin: 0 auto;
+    background-color: #0f0f1b;
+    color: #f3f3f3;
+    min-height: 0;
+    /* مهم لمنع overflow داخل flex container */
 }
+
 
 h1 {
     font-size: 2.8rem;
     font-weight: 700;
-    color: #2c3e50; /* Darker, professional blue-grey */
+    color: #00f5d4;
     margin-bottom: 2.5rem;
     text-align: center;
     position: relative;
@@ -18,7 +43,7 @@ h1::after {
     display: block;
     width: 80px;
     height: 4px;
-    background-color: #3498db; /* Accent blue */
+    background-color: #5eead4;
     margin: 10px auto 0;
     border-radius: 2px;
 }
@@ -26,9 +51,9 @@ h1::after {
 h4 {
     font-size: 1.6rem;
     font-weight: 600;
-    color: #34495e; /* Slightly lighter than h1 */
+    color: #5eead4;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid #ecf0f1; /* Light grey separator */
+    border-bottom: 1px solid #15152b;
     padding-bottom: 0.5rem;
 }
 
@@ -36,123 +61,128 @@ label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #34495e;
+    color: #ccc;
 }
 
 .form-control {
     border-radius: 0.35rem;
-    border: 1px solid #ced4da;
+    border: 1px solid #333;
+    background-color: #15152b;
+    color: #f3f3f3;
     padding: 0.75rem 1rem;
     font-size: 1rem;
     transition: all 0.3s ease;
-    box-shadow: none;
-    margin-bottom: 1rem; /* Added margin-bottom for form controls */
+    margin-bottom: 1rem;
 }
 
 .form-control:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    border-color: #00f5d4;
+    box-shadow: 0 0 5px rgba(0, 245, 212, 0.4);
+    outline: none;
 }
 
 .form-check {
-    margin-bottom: 0.75rem; /* Spacing between radio buttons */
+    margin-bottom: 0.75rem;
 }
 
 .form-check-input {
+    accent-color: #00f5d4;
     margin-top: 0.3rem;
     margin-right: 0.5rem;
 }
 
 .form-check-label {
     font-size: 1rem;
-    color: #555;
+    color: #aaa;
 }
 
 .payment-methods {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem; /* Spacing between payment method options */
-    margin-bottom: 1.5rem; /* Spacing below payment methods section */
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
 }
 
 .btn-primary {
-    background-color: #3498db;
-    border-color: #3498db;
+    background-color: #00f5d4;
+    border: none;
+    color: #111123;
     padding: 0.8rem 1.5rem;
     font-size: 1.1rem;
     font-weight: 600;
     border-radius: 0.35rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 245, 212, 0.2);
+    cursor: pointer;
 }
 
 .btn-primary:hover {
-    background-color: #2980b9;
-    border-color: #2980b9;
-    box-shadow: 0 6px 8px rgba(52, 152, 219, 0.3);
+    background-color: #5eead4;
+    box-shadow: 0 6px 8px rgba(0, 245, 212, 0.3);
 }
 
 .card {
+    background-color: #111123;
     border: none;
     border-radius: 0.5rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 20px rgba(0, 245, 212, 0.08);
     overflow: hidden;
 }
 
 .card-header {
-    background-color: #f8f9fa; /* Light background for header */
-    border-bottom: 1px solid #e0e0e0;
+    background-color: #15152b;
+    border-bottom: 1px solid #2a2a3d;
     padding: 1.2rem 1.5rem;
     font-size: 1.2rem;
     font-weight: 600;
-    color: #34495e;
+    color: #00f5d4;
 }
 
 .list-group-item {
+    background-color: transparent;
     border: none;
     padding: 1rem 1.5rem;
-    border-bottom: 1px solid #f0f0f0;
-    margin-bottom: 0.5rem; /* Added margin-bottom for list items */
+    border-bottom: 1px solid #1f1f30;
+    margin-bottom: 0.5rem;
 }
 
 .list-group-item:last-child {
     border-bottom: none;
-    margin-bottom: 0; /* Remove margin for the last item */
+    margin-bottom: 0;
 }
 
 .list-group-item h6 {
     font-size: 1.1rem;
     font-weight: 500;
-    color: #333;
+    color: #eee;
 }
 
 .list-group-item small {
     font-size: 0.9rem;
-    color: #7f8c8d;
+    color: #999;
 }
 
 .list-group-item span {
     font-weight: 600;
-    color: #2c3e50;
+    color: #00f5d4;
 }
 
 .list-group-item strong {
     font-size: 1.3rem;
-    color: #27ae60; /* Green for total price */
+    color: #5eead4;
 }
 
 .text-muted {
-    color: #7f8c8d !important;
+    color: #aaa !important;
 }
 
 .invalid-feedback {
     font-size: 0.9rem;
-    color: #e74c3c; /* Red for error messages */
-    margin-top: -0.75rem; /* Adjust to pull up closer to the input */
-    margin-bottom: 1rem; /* Ensure it takes up space */
+    color: #e74c3c;
+    margin-top: -0.75rem;
+    margin-bottom: 1rem;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
         padding: 2rem 0.5rem;
