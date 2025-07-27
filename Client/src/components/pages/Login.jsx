@@ -40,7 +40,11 @@ const Login = () => {
 
             if (response.ok) {
                 login(data.user, data.user.isOwner, data.user.shop);
-                navigate('/admin-dashboard');
+                if (data.user.shop != (null || undefined)) {
+                    navigate('/' + data.user.shop.name);
+                } else {
+                    navigate('/');
+                }
             } else {
                 setError(data.message || 'Login failed');
             }
