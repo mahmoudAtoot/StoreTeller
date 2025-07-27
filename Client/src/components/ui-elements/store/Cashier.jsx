@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import styles from './Cashier.module.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Cashier = ({ hoveredProduct }) => {
   const [chatInput, setChatInput] = useState('');
   const [chatResponse, setChatResponse] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   // DeepSeek chat function inside the component
   const sendToDeepSeek = async (userMessage) => {
     try {
@@ -101,8 +104,8 @@ const Cashier = ({ hoveredProduct }) => {
 
       {/* Action Buttons */}
       <div className={styles.actionButtons}>
-        <button className={styles.cartButton}>View Cart</button>
-        <button className={styles.checkoutButton}>Checkout</button>
+        <button className={styles.cartButton} onClick={() => navigate('/cart')}>View Cart</button>
+        <button className={styles.checkoutButton} onClick={() => navigate('/checkout')}>Checkout</button>
       </div>
     </div>
   );

@@ -6,3 +6,4 @@ export { default as ProductAddPage } from './productaddpage';
 export { default as LandingPage } from './LandingPage';
 export { default as WishlistPage } from './WishlistPage';
 export { default as CheckoutPage } from './CheckoutPage';
+export { default as CartPage } from './CartPage';
