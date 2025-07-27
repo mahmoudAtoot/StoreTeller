@@ -6,7 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Navbar, Footer } from './components/shared';
 
-import { LoginPage, RegisterPage, ShopPage, OwnerPage, ProductAddPage, LandingPage, WishlistPage, CheckoutPage, CartPage, ChatPage } from './components/pages';
+import { LoginPage, RegisterPage, ShopPage, ProductAddPage, LandingPage, WishlistPage, CheckoutPage, CartPage, ChatPage } from './components/pages';
+import PrivateRoute from './components/shared/PrivateRoute'; // Import PrivateRoute
 import ItemDisplay from './components/ui-elements/store/itemdisplay'; // Import ItemDisplay
 
 const Layout = ({ onProductClick }) => (
@@ -44,8 +45,8 @@ function App() {
           <Route path="/:storename" element={<ShopPage />} />
           <Route path="/add" element={<ProductAddPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<PrivateRoute><CheckoutPage /></PrivateRoute>} />
+          <Route path="/cart" element={<PrivateRoute><CartPage /></PrivateRoute>} />
           <Route path="/chat" element={<ChatPage />} />
         </Route>
       </Routes>
