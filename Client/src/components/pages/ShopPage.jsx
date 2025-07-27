@@ -100,7 +100,7 @@ function ShopPage() {
                 <EditProductModal
                     product={productToEdit}
                     onClose={handleCloseModal}
-                    onProductUpdated={fetchProducts}
+                    onProductUpdated={handleSaveEditedProduct}
                 />
             )}
         </div>
