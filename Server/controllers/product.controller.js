@@ -8,10 +8,12 @@ module.exports = {
             console.log('Received files:', req.files);
 
             const { name, description, price, category, shopName } = req.body;
-            const image = req.files && req.files['image'] ? `/uploads/${req.files['image'][0].filename}` : null;
-            const gif = req.files && req.files['gif'] ? `/uploads/${req.files['gif'][0].filename}` : null;
+            const imageBuffer = req.files && req.files['image'] ? req.files['image'][0].buffer : null;
+            const imageMimeType = req.files && req.files['image'] ? req.files['image'][0].mimetype : null;
+            const gifBuffer = req.files && req.files['gif'] ? req.files['gif'][0].buffer : null;
+            const gifMimeType = req.files && req.files['gif'] ? req.files['gif'][0].mimetype : null;
 
-            if (!image) {
+            if (!imageBuffer) {
                 console.error('Error: Product image is required.');
                 return res.status(400).json({ message: 'Product image is required' });
             }
@@ -27,8 +29,10 @@ module.exports = {
                 description,
                 price,
                 category,
-                image,
-                gif,
+                image: imageBuffer,
+                imageMimeType: imageMimeType,
+                gif: gifBuffer,
+                gifMimeType: gifMimeType,
                 shop: shop._id
             });
             console.log('Product created successfully:', newProduct);
@@ -57,7 +61,12 @@ module.exports = {
             }
 
             products = await Product.find(query);
-            res.status(200).json(products);
+            const productsWithBase64Images = products.map(product => ({
+                ...product.toObject(),
+                image: product.image ? `data:${product.imageMimeType};base64,${product.image.toString('base64')}` : null,
+                gif: product.gif ? `data:${product.gifMimeType};base64,${product.gif.toString('base64')}` : null,
+            }));
+            res.status(200).json(productsWithBase64Images);
         } catch (error) {
             res.status(500).json({ message: 'Error fetching products', error });
         }
@@ -68,7 +77,12 @@ module.exports = {
             if (!product) {
                 return res.status(404).json({ message: 'Product not found' });
             }
-            res.status(200).json(product);
+            const productWithBase64Images = {
+                ...product.toObject(),
+                image: product.image ? `data:${product.imageMimeType};base64,${product.image.toString('base64')}` : null,
+                gif: product.gif ? `data:${product.gifMimeType};base64,${product.gif.toString('base64')}` : null,
+            };
+            res.status(200).json(productWithBase64Images);
         } catch (error) {
             res.status(500).json({ message: 'Error fetching product', error });
         }

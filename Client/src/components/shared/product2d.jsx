@@ -21,7 +21,7 @@ const Product2D = ({ product, isOwner, onProductClick, onProductHover, onEditCli
         }
     };
 
-    const imageUrl = product.image ? `http://localhost:8000${product.image}` : '';
+    const imageUrl = product.image || '';
 
     return (
         <>

@@ -21,10 +21,18 @@ const ProductSchema = new mongoose.Schema({
         required: [true, "Product category is required"],
     },
     image: {
-        type: String,
+        type: Buffer,
         required: [true, "Product image is required"],
     },
+    imageMimeType: {
+        type: String,
+        required: [true, "Product image MIME type is required"],
+    },
     gif: {
+        type: Buffer,
+        required: false,
+    },
+    gifMimeType: {
         type: String,
         required: false,
     },

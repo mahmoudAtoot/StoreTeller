@@ -5,7 +5,7 @@ import { Route, Routes, Outlet } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Navbar, Footer } from './components/shared';
-import { LoginPage, RegisterPage, ShopPage, OwnerPage, ProductAddPage, LandingPage, WishlistPage, CheckoutPage, CartPage } from './components/pages';
+import { LoginPage, RegisterPage, ShopPage, ProductAddPage, LandingPage, WishlistPage, CheckoutPage, CartPage } from './components/pages';
 import ItemDisplay from './components/ui-elements/store/itemdisplay'; // Import ItemDisplay
 
 const Layout = ({ onProductClick }) => (
@@ -41,7 +41,6 @@ function App() {
 
         <Route element={<Layout onProductClick={handleProductClick} />}>
           <Route path="/:storename" element={<ShopPage />} />
-          <Route path="/:storename/owner" element={<OwnerPage />} />
           <Route path="/add" element={<ProductAddPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
