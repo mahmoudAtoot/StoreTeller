@@ -1,17 +1,8 @@
 const productController = require('../controllers/product.controller');
 const multer = require('multer');
-const path = require('path');
 
-// Set up storage for uploaded files
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Files will be stored in the 'uploads' directory
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Append timestamp to filename
-    }
-});
-
+// Set up storage for uploaded files in memory
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 module.exports = (app) => {

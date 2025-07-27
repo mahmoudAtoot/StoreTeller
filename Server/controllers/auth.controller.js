@@ -67,7 +67,7 @@ const loginUser = async (req, res) => {
                 lastName: user.lastName,
                 email: user.email,
                 shop: user.shop ? { id: user.shop._id, name: user.shop.name } : null,
-                isOwner: !!user.shop
+                isOwner: user.shop ? user.shop.owner.toString() === user._id.toString() : false
             }
         });
     } catch (err) {
