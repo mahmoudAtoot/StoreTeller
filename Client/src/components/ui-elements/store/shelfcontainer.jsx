@@ -1,34 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import StoreShelf from './storeshelf';
 import styles from './shelfcontainer.module.css';
+import axios from 'axios';
 
 const PRODUCTS_PER_SHELF = 5; // Define how many products per shelf
 
-const ShelfContainer = ({ isOwner, onProductClick, onProductHover }) => {
+const ShelfContainer = ({ onProductClick, onProductHover, isOwner }) => {
     console.log('ShelfContainer: onProductClick prop:', onProductClick);
     const [allProducts, setAllProducts] = useState([]);
 
     useEffect(() => {
-        // Placeholder for fetching products
-        // In a real application, you would fetch this data from an API
-        const fetchedProducts = [
-            { id: 1, name: 'Product A', price: '10.00', image: '' },
-            { id: 2, name: 'Product B', price: '20.00', image: '' },
-            { id: 3, name: 'Product C', price: '30.00', image: '' },
-            { id: 4, name: 'Product D', price: '40.00', image: '' },
-            { id: 5, name: 'Product E', price: '50.00', image: '' },
-            { id: 6, name: 'Product F', price: '60.00', image: '' },
-            { id: 7, name: 'Product G', price: '70.00', image: '' },
-            { id: 8, name: 'Product H', price: '80.00', image: '' },
-            { id: 9, name: 'Product I', price: '90.00', image: '' },
-            { id: 10, name: 'Product J', price: '100.00', image: '' },
-            { id: 11, name: 'Product K', price: '110.00', image: '' },
-            { id: 12, name: 'Product L', price: '120.00', image: '' },
-            { id: 13, name: 'Product M', price: '130.00', image: '' },
-            { id: 14, name: 'Product N', price: '140.00', image: '' },
-            { id: 15, name: 'Product O', price: '150.00', image: '' },
-        ];
-        setAllProducts(fetchedProducts);
+        axios.get('/api/store/products')
+            .then(res => {
+                console.log("API Response Data:", res.data);
+                setAllProducts(res.data);
+            })
+            .catch(err => {
+                console.error("Error fetching products:", err);
+            });
     }, []);
 
     // Divide products into shelves

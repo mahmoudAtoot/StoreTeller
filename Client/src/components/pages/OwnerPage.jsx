@@ -1,10 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import CategorySelector from '../ui-elements/store/categoryselector';
 import ShelfContainer from '../ui-elements/store/shelfcontainer';
 import styles from './OwnerPage.module.css';
+import { useAuth } from '../../context/AuthContext';
 
 function OwnerPage() {
+    const { isOwner, shopName } = useAuth();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isOwner || !shopName) {
+            navigate('/'); // Redirect if not an owner or no shop associated
+        }
+    }, [isOwner, shopName, navigate]);
+
+    if (!isOwner || !shopName) {
+        return null; // Or a loading spinner
+    }
+
     return (
         <div className={styles.container}>
             <div className={`${styles.dFlex} ${styles.justifyContentBetween} ${styles.alignItemsCenter} ${styles.mb3}`}>

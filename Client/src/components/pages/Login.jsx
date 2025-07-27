@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Login.module.css';
 import { Footer, Navbar } from '../shared';
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleChange = (e) => {
         setFormData({
@@ -37,8 +39,7 @@ const Login = () => {
             const data = await response.json();
 
             if (response.ok) {
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
+                login(data.user, data.user.isOwner, data.user.shop);
                 navigate('/admin-dashboard');
             } else {
                 setError(data.message || 'Login failed');

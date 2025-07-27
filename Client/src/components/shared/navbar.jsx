@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './navbar.module.css';
+import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const { user, isOwner, shopName, logout } = useAuth();
+    const navigate = useNavigate();
 
     const toggleMenu = () => setMenuOpen(!menuOpen);
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
 
     return (
         <nav className={styles.navbar}>
@@ -14,7 +22,16 @@ const Navbar = () => {
             </div>
 
             <div className={`${styles.navLinks} ${menuOpen ? styles.active : ''}`}>
-                <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+                {user ? (
+                    <>
+                        {isOwner && shopName && (
+                            <Link to={`/${shopName}/owner`} onClick={() => setMenuOpen(false)}>Owner Dashboard</Link>
+                        )}
+                        <button onClick={handleLogout} className={styles.navButton}>Logout</button>
+                    </>
+                ) : (
+                    <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+                )}
                 {/* ممكن تضيف لينكات زيادة هنا */}
             </div>
 

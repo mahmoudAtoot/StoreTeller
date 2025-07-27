@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Register.module.css';
 import { Footer, Navbar } from '../shared';
+import { useAuth } from '../../context/AuthContext';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -9,11 +10,13 @@ const Register = () => {
         lastName: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        shopName: '' // Added shopName to form data
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -38,6 +41,7 @@ const Register = () => {
             const data = await response.json();
 
             if (response.ok) {
+                login(data.user, !!data.shop, data.shop);
                 navigate('/admin-dashboard');
             } else {
                 setError(data.message || 'Registration failed.');
@@ -130,6 +134,19 @@ const Register = () => {
                                 onChange={handleChange}
                                 required
                                 placeholder="Confirm your password"
+                                disabled={loading}
+                            />
+                        </div>
+
+                        <div className={styles.formGroup}>
+                            <label htmlFor="shopName">Shop Name (Optional)</label>
+                            <input
+                                type="text"
+                                id="shopName"
+                                name="shopName"
+                                value={formData.shopName}
+                                onChange={handleChange}
+                                placeholder="Enter your shop name (optional)"
                                 disabled={loading}
                             />
                         </div>
