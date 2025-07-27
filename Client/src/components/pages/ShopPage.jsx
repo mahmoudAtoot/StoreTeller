@@ -58,7 +58,7 @@ function ShopPage() {
     const handleSaveEditedProduct = async (updatedProduct) => {
         try {
             await axios.put(`/api/products/${updatedProduct._id}`, updatedProduct);
-            console.log('Product updated successfully!', updatedProduct);
+            
             handleCloseModal();
             fetchProducts(); // Refresh products after successful edit
         } catch (error) {

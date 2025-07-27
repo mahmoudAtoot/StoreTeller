@@ -1,3 +1,13 @@
+
+:root {
+  --bg: #0f0f1b;
+  --text: #f3f3f3;
+  --accent: #00f5d4;
+  --secondary: #5eead4;
+  --card-bg: #111123;
+  --hover-bg: #15152b;
+}
+
 html,
 body,
 #root {
@@ -8,31 +18,26 @@ body,
 body {
     display: flex;
     flex-direction: column;
-    background-color: #0f0f1b;
-    color: #f3f3f3;
+    background-color: var(--bg);
+    color: var(--text);
 }
 
 .container {
     flex-grow: 1;
-    /* يملأ المساحة المتبقية */
     display: flex;
-    /* لو بدك توزيع داخلي ب flex */
     flex-direction: column;
-    /* ترتيب عمودي */
     padding: 3rem 1rem;
-    max-width: 1000px;
+    max-width: 1200px; /* Increased max-width for better layout */
     margin: 0 auto;
-    background-color: #0f0f1b;
-    color: #f3f3f3;
+    background-color: var(--bg);
+    color: var(--text);
     min-height: 0;
-    /* مهم لمنع overflow داخل flex container */
 }
-
 
 h1 {
     font-size: 2.8rem;
     font-weight: 700;
-    color: #00f5d4;
+    color: var(--accent);
     margin-bottom: 2.5rem;
     text-align: center;
     position: relative;
@@ -43,7 +48,7 @@ h1::after {
     display: block;
     width: 80px;
     height: 4px;
-    background-color: #5eead4;
+    background-color: var(--secondary);
     margin: 10px auto 0;
     border-radius: 2px;
 }
@@ -51,9 +56,9 @@ h1::after {
 h4 {
     font-size: 1.6rem;
     font-weight: 600;
-    color: #5eead4;
+    color: var(--secondary);
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid #15152b;
+    border-bottom: 1px solid var(--hover-bg);
     padding-bottom: 0.5rem;
 }
 
@@ -64,49 +69,89 @@ label {
     color: #ccc;
 }
 
-.form-control {
+.checkoutContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  flex: 1;
+}
+
+.shippingAddressSection {
+  flex: 2;
+  min-width: 300px;
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shippingAddressSection:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px var(--accent);
+}
+
+.checkoutForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.formGroup {
+  flex: 1;
+  min-width: 200px;
+}
+
+.formControl {
     border-radius: 0.35rem;
     border: 1px solid #333;
-    background-color: #15152b;
-    color: #f3f3f3;
+    background-color: var(--hover-bg);
+    color: var(--text);
     padding: 0.75rem 1rem;
     font-size: 1rem;
     transition: all 0.3s ease;
     margin-bottom: 1rem;
+    width: 100%; /* Ensure inputs take full width of their group */
 }
 
-.form-control:focus {
-    border-color: #00f5d4;
+.formControl:focus {
+    border-color: var(--accent);
     box-shadow: 0 0 5px rgba(0, 245, 212, 0.4);
     outline: none;
 }
 
-.form-check {
+.formCheck {
     margin-bottom: 0.75rem;
 }
 
-.form-check-input {
-    accent-color: #00f5d4;
+.formCheckInput {
+    accent-color: var(--accent);
     margin-top: 0.3rem;
     margin-right: 0.5rem;
 }
 
-.form-check-label {
+.formCheckLabel {
     font-size: 1rem;
     color: #aaa;
 }
 
-.payment-methods {
+.paymentMethods {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
 }
 
-.btn-primary {
-    background-color: #00f5d4;
+.btnPrimary {
+    background-color: var(--accent);
     border: none;
-    color: #111123;
+    color: var(--card-bg);
     padding: 0.8rem 1.5rem;
     font-size: 1.1rem;
     font-weight: 600;
@@ -114,74 +159,108 @@ label {
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 245, 212, 0.2);
     cursor: pointer;
+    width: 100%; /* Make button full width */
 }
 
-.btn-primary:hover {
-    background-color: #5eead4;
+.btnPrimary:hover {
+    background-color: var(--secondary);
     box-shadow: 0 6px 8px rgba(0, 245, 212, 0.3);
 }
 
-.card {
-    background-color: #111123;
-    border: none;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 20px rgba(0, 245, 212, 0.08);
-    overflow: hidden;
+.orderSummarySection {
+    flex: 1;
+    min-width: 250px;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: fit-content;
 }
 
-.card-header {
-    background-color: #15152b;
-    border-bottom: 1px solid #2a2a3d;
-    padding: 1.2rem 1.5rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #00f5d4;
+.orderSummarySection:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px var(--accent);
 }
 
-.list-group-item {
+.listGroup {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.listGroupItem {
     background-color: transparent;
     border: none;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid #1f1f30;
+    padding: 1rem 0; /* Adjusted padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Adjusted border */
     margin-bottom: 0.5rem;
 }
 
-.list-group-item:last-child {
+.listGroupItem:last-child {
     border-bottom: none;
     margin-bottom: 0;
 }
 
-.list-group-item h6 {
+.listGroupItem h6 {
     font-size: 1.1rem;
     font-weight: 500;
     color: #eee;
 }
 
-.list-group-item small {
+.listGroupItem small {
     font-size: 0.9rem;
     color: #999;
 }
 
-.list-group-item span {
+.listGroupItem span {
     font-weight: 600;
-    color: #00f5d4;
+    color: var(--accent);
 }
 
-.list-group-item strong {
+.listGroupItem strong {
     font-size: 1.3rem;
-    color: #5eead4;
+    color: var(--secondary);
 }
 
-.text-muted {
+.textMuted {
     color: #aaa !important;
 }
 
-.invalid-feedback {
+.invalidFeedback {
     font-size: 0.9rem;
     color: #e74c3c;
     margin-top: -0.75rem;
     margin-bottom: 1rem;
 }
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 2rem 0;
+}
+
+/* Utility classes for flexbox and spacing */
+.dFlex { display: flex; }
+.justifyContentBetween { justify-content: space-between; }
+.alignItemsCenter { align-items: center; }
+.mb3 { margin-bottom: 1rem; } /* Adjusted from Bootstrap's 1rem */
+.badge {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+.bgPrimary { background-color: var(--accent) !important; color: var(--card-bg); }
+.roundedPill { border-radius: 50rem !important; }
+.dBlock { display: block; }
+.w100 { width: 100%; }
+
 
 @media (max-width: 768px) {
     .container {
@@ -196,8 +275,28 @@ label {
         font-size: 1.4rem;
     }
 
-    .btn-primary {
+    .btnPrimary {
         font-size: 1rem;
         padding: 0.7rem 1.2rem;
+    }
+
+    .checkoutContent {
+      flex-direction: column;
+    }
+
+    .shippingAddressSection,
+    .orderSummarySection {
+      min-width: unset;
+      width: 100%;
+    }
+
+    .formRow {
+      flex-direction: column;
+      gap: 0; /* Remove gap for stacked items */
+    }
+
+    .formGroup {
+      min-width: unset;
+      width: 100%;
     }
 }
