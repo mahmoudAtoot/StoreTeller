@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import styles from './Login.module.css';
 import { Footer, Navbar } from '../shared';
 import { useAuth } from '../../context/AuthContext';
@@ -12,6 +12,8 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'; // Get the previous path, default to /
     const { login } = useAuth();
 
     const handleChange = (e) => {
@@ -40,11 +42,8 @@ const Login = () => {
 
             if (response.ok) {
                 login(data.user, data.user.isOwner, data.user.shop);
-                if (data.user.shop != (null || undefined)) {
-                    navigate('/' + data.user.shop.name);
-                } else {
-                    navigate('/');
-                }
+                // Redirect to the previous page or default to home
+                navigate(from, { replace: true });
             } else {
                 setError(data.message || 'Login failed');
             }

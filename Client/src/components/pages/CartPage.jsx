@@ -5,19 +5,24 @@ import { useNavigate } from 'react-router-dom';
 import Product2D from '../shared/product2d';
 import styles from './CartPage.module.css';
 import Chat from '../chat/Chat';
-
-// Placeholder for current user's ID and model - in a real app, this would come from auth context
-const CURRENT_USER_ID = "60c72b2f9b1e8c001c8e4d1b"; // Example User ID
-const CURRENT_USER_MODEL = "User";
-
-// Placeholder for owner's ID and model - must match the one used in ChatPage.jsx
-const OWNER_ID = "60c72b2f9b1e8c001c8e4d1a"; // Example Shop ID
-const OWNER_MODEL = "Shop";
+import { useAuth } from '../../context/AuthContext';
 
 const CartPage = () => {
+  const { user, isOwner } = useAuth();
+  console.log("CartPage Auth Context:", { user, isOwner });
   const { cartItems, removeItemFromCart, updateItemQuantity, getTotalPrice } = useCart();
   const navigate = useNavigate();
   const [showChat, setShowChat] = useState(false);
+
+  // Dynamically set CURRENT_USER_ID and CURRENT_USER_MODEL from AuthContext
+  const CURRENT_USER_ID = user ? user._id : null;
+  const CURRENT_USER_MODEL = user ? user.model : null; // Assuming user object has a 'model' field
+
+  // OWNER_ID should ideally come from the product/shop context, not hardcoded.
+  // For now, if the current user is an owner, they are the OWNER_ID.
+  // Otherwise, this needs to be dynamically fetched (e.g., from the product's shop ID).
+  const OWNER_ID = isOwner && user ? user._id : (user ? "60c72b2f9b1e8c001c8e4d1a" : null); // TEMPORARY: Placeholder if not owner, needs dynamic fetch
+  const OWNER_MODEL = "Shop"; // Assuming the owner is always a 'Shop' model for chat purposes
 
   const handleCheckout = () => {
     navigate('/checkout');
@@ -121,10 +126,9 @@ const CartPage = () => {
               <>
                 <h3 className={styles.chatTitle}>Live Chat with Owner</h3>
                 <Chat 
-                    currentUser={CURRENT_USER_ID}
-                    currentUserModel={CURRENT_USER_MODEL}
                     otherUser={OWNER_ID}
                     otherUserModel={OWNER_MODEL}
+                    otherUserName="Owner"
                 />
               </>
             ) : (

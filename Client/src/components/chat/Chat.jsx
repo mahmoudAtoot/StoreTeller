@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 import styles from './Chat.module.css';
+import axios from 'axios'; // Import axios
 
-let socket = null; // Initialize socket as null
+let socket = null;
 
-const Chat = ({ currentUser, otherUser, currentUserModel, otherUserModel }) => {
+const Chat = ({ otherUser, otherUserModel, otherUserName }) => {
+    const [loggedInUser, setLoggedInUser] = useState(null); // New state for fetched user
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const [isOtherUserTyping, setIsOtherUserTyping] = useState(false);
@@ -12,46 +14,66 @@ const Chat = ({ currentUser, otherUser, currentUserModel, otherUserModel }) => {
     const messagesEndRef = useRef(null);
     const typingTimeoutRef = useRef(null);
 
+    // Fetch logged-in user data on component mount
+    useEffect(() => {
+        const fetchLoggedInUser = async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/api/me'); // Assuming /api/me endpoint
+                setLoggedInUser(response.data);
+            } catch (error) {
+                console.error("Error fetching logged-in user:", error);
+                setLoggedInUser(null); // Ensure user is null on error
+            }
+        };
+        fetchLoggedInUser();
+    }, []); // Empty dependency array to run once on mount
+
+    const currentUser = loggedInUser ? loggedInUser._id : null;
+    const currentUserModel = loggedInUser ? loggedInUser.model : null;
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
     useEffect(() => {
+        if (!loggedInUser) return; // Only connect socket if user data is available
+
         const connectSocket = () => {
             socket = io('http://localhost:8000');
 
             socket.on('connect', () => {
                 console.log('Socket connected!');
-                if (currentUser && currentUserModel) {
-                    socket.emit('user_online', { userId: currentUser, userModel: currentUserModel });
+                socket.emit('user_online', { userId: loggedInUser._id, userModel: loggedInUser.model });
+
+                if (otherUser) {
+                    socket.emit('get_messages', {
+                        user1Id: loggedInUser._id,
+                        user1Model: loggedInUser.model,
+                        user2Id: otherUser,
+                        user2Model: otherUserModel
+                    }, (history) => {
+                        setMessages(history);
+                        scrollToBottom();
+                    });
                 }
             });
 
             socket.on('disconnect', () => {
                 console.log('Socket disconnected.');
-                setIsOtherUserOnline(false); // Assume offline if disconnected
+                setIsOtherUserOnline(false);
             });
 
-            // Fetch message history when component mounts or users change
-            if (currentUser && otherUser) {
-                socket.emit('get_messages', {
-                    user1Id: currentUser,
-                    user1Model: currentUserModel,
-                    user2Id: otherUser,
-                    user2Model: otherUserModel
-                }, (history) => {
-                    setMessages(history);
-                    scrollToBottom();
-                });
-            }
-
-            // Listen for new messages
             socket.on('receive_message', (data) => {
-                setMessages((prevMessages) => [...prevMessages, data]);
-                scrollToBottom();
+                if (
+                    data &&
+                    data.sender &&
+                    data.sender._id &&
+                    data.sender._id.toString() !== loggedInUser._id.toString()
+                ) {
+                    setMessages((prevMessages) => [...prevMessages, data]);
+                    scrollToBottom();
+                }
             });
 
-            // Listen for typing events
             socket.on('typing', (senderId) => {
                 if (senderId === otherUser) {
                     setIsOtherUserTyping(true);
@@ -64,7 +86,6 @@ const Chat = ({ currentUser, otherUser, currentUserModel, otherUserModel }) => {
                 }
             });
 
-            // Listen for user status changes
             socket.on('user_status_change', ({ userId, isOnline }) => {
                 if (userId === otherUser) {
                     setIsOtherUserOnline(isOnline);
@@ -72,68 +93,86 @@ const Chat = ({ currentUser, otherUser, currentUserModel, otherUserModel }) => {
             });
         };
 
-        const timeoutId = setTimeout(connectSocket, 5000); // Delay connection by 5 seconds
+        connectSocket();
 
         return () => {
-            clearTimeout(timeoutId);
             if (socket) {
                 socket.disconnect();
                 socket = null;
             }
         };
-    }, [currentUser, otherUser, currentUserModel, otherUserModel]);
+    }, [loggedInUser, otherUser, otherUserModel]); // Add loggedInUser to dependencies
 
     const handleMessageChange = (e) => {
         setMessage(e.target.value);
-        if (currentUser && otherUser && socket) {
+        if (loggedInUser && otherUser && socket) {
             if (typingTimeoutRef.current) {
                 clearTimeout(typingTimeoutRef.current);
             }
-            socket.emit('typing', { senderId: currentUser, receiverId: otherUser });
+            socket.emit('typing', { senderId: loggedInUser._id, receiverId: otherUser });
             typingTimeoutRef.current = setTimeout(() => {
-                socket.emit('stop_typing', { senderId: currentUser, receiverId: otherUser });
+                socket.emit('stop_typing', { senderId: loggedInUser._id, receiverId: otherUser });
             }, 1000);
         }
     };
 
     const sendMessage = () => {
-        if (message.trim() && currentUser && otherUser && socket) {
+        console.log("Current state for sending:", { message, currentUser: loggedInUser?._id, otherUser, socket: socket ? "connected" : "disconnected" });
+
+        // Always add the message to the local state for immediate display
+        setMessages((prevMessages) => [...prevMessages, {
+            sender: {
+                _id: loggedInUser?._id,
+                firstName: loggedInUser?.model === "User" ? "You" : undefined,
+                lastName: loggedInUser?.model === "User" ? "" : undefined,
+                name: loggedInUser?.model === "Shop" ? "You" : undefined
+            },
+            senderModel: loggedInUser?.model,
+            content: message
+        }]);
+        setMessage('');
+        scrollToBottom();
+
+        if (message.trim() && loggedInUser && otherUser && socket) {
             const messageData = {
-                senderId: currentUser,
-                senderModel: currentUserModel,
+                senderId: loggedInUser._id,
+                senderModel: loggedInUser.model,
                 receiverId: otherUser,
                 receiverModel: otherUserModel,
                 content: message,
             };
+            console.log("Sending message data:", messageData);
             socket.emit('send_message', messageData);
-            // Optimistically update UI with sent message
-            setMessages((prevMessages) => [...prevMessages, { 
-                sender: { _id: currentUser, username: currentUserModel === "User" ? "You" : undefined, shopName: currentUserModel === "Shop" ? "You" : undefined }, 
-                senderModel: currentUserModel,
-                content: message 
-            }]);
-            setMessage('');
-            scrollToBottom();
-            socket.emit('stop_typing', { senderId: currentUser, receiverId: otherUser }); // Stop typing after sending
+            socket.emit('stop_typing', { senderId: loggedInUser._id, receiverId: otherUser });
+        } else {
+            if (!otherUser) {
+                console.warn("Message displayed locally but NOT sent to server: otherUser is null. Please select a user or ensure owner ID is fetched.");
+            }
         }
     };
 
     const getSenderName = (msg) => {
-        if (!msg.sender) return "Unknown";
+        if (!msg.sender) return "System";
         if (msg.sender._id && msg.sender._id.toString() === currentUser.toString()) {
             return "You";
-        } else if (msg.senderModel === "User" && msg.sender.username) {
-            return msg.sender.username;
-        } else if (msg.senderModel === "Shop" && msg.sender.shopName) {
-            return msg.sender.shopName;
+        } else if (msg.senderModel === "User") {
+            if (msg.sender.firstName && msg.sender.lastName) {
+                return `${msg.sender.firstName} ${msg.sender.lastName}`;
+            } else if (msg.sender.firstName) {
+                return msg.sender.firstName;
+            } else if (msg.sender.lastName) {
+                return msg.sender.lastName;
+            }
+        } else if (msg.senderModel === "Shop" && msg.sender.name) {
+            return msg.sender.name;
         }
-        return "Unknown";
+        return "System";
     };
 
     return (
         <div className={styles.chatContainer}>
             <div className={styles.chatHeader}>
-                <h3>Chat with {otherUserModel === "User" ? "User" : "Owner"}</h3>
+                <h3>Chat with {otherUserName || (otherUserModel === "User" ? "User" : "Owner")}</h3>
                 <span className={`${styles.statusIndicator} ${isOtherUserOnline ? styles.online : styles.offline}`}>
                     {isOtherUserOnline ? 'Online' : 'Offline'}
                 </span>

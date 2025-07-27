@@ -16,7 +16,7 @@ const LandingPage = () => {
             Smart and easy shopping with a professional online store management experience.
           </p>
           <div className={styles.buttons}>
-            <a href="/login" className={styles.primaryBtn}>
+            <a href="/shop" className={styles.primaryBtn}>
               Shop Now
             </a>
             <a href="#features" className={styles.secondaryBtn}>

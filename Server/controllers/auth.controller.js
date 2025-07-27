@@ -56,17 +56,17 @@ const loginUser = async (req, res) => {
         if (!isMatch) return res.status(400).json({ message: 'Invalid email or password' });
 
         // Create JWT
-        const token = jwt.sign({ id: user._id }, 'secret-key', { expiresIn: '1d' });
+        const token = jwt.sign({ _id: user._id, model: user.model }, process.env.SECRET_KEY, { expiresIn: '1d' });
 
-        res.json({
+        res.cookie('usertoken', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' }).json({
             message: 'Login successful',
-            token,
             user: {
-                id: user._id,
+                _id: user._id,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
-                shop: user.shop ? { id: user.shop._id, name: user.shop.name } : null,
+                model: "User", // Explicitly set model to "User"
+                shop: user.shop ? { _id: user.shop._id, name: user.shop.name } : null,
                 isOwner: user.shop ? user.shop.owner.toString() === user._id.toString() : false
             }
         });
@@ -76,7 +76,28 @@ const loginUser = async (req, res) => {
     }
 };
 
+const getLoggedInUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id).populate('shop');
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json({
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            model: "User", // Explicitly set model to "User"
+            shop: user.shop ? { _id: user.shop._id, name: user.shop.name } : null,
+            isOwner: user.shop ? user.shop.owner.toString() === user._id.toString() : false
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getLoggedInUser
 };

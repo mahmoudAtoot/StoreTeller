@@ -48,22 +48,28 @@ io.on('connection', (socket) => {
     console.log('New client connected', socket.id);
 
     socket.on('user_online', async ({ userId, userModel }) => {
-        let userName = "Unknown";
+        let userDetails = {};
         try {
             if (userModel === "User") {
                 const user = await User.findById(userId);
-                if (user) userName = user.username; // Assuming 'username' field for User
+                if (user) {
+                    userDetails.firstName = user.firstName;
+                    userDetails.lastName = user.lastName;
+                }
             } else if (userModel === "Shop") {
                 const shop = await Shop.findById(userId);
-                if (shop) userName = shop.shopName; // Assuming 'shopName' field for Shop
+                if (shop) {
+                    userDetails.shopName = shop.name;
+                }
             }
         } catch (error) {
-            console.error("Error fetching user name:", error);
+            console.error("Error fetching user details:", error);
         }
 
-        connectedUsers[userId] = { socketId: socket.id, name: userName, model: userModel };
-        console.log(`${userModel} ${userName} (${userId}) is online. Socket ID: ${socket.id}`);
-        io.emit('user_status_change', { userId, isOnline: true, name: userName, model: userModel });
+        connectedUsers[userId] = { socketId: socket.id, ...userDetails, model: userModel };
+        const displayName = userModel === "User" ? `${userDetails.firstName} ${userDetails.lastName}` : userDetails.shopName;
+        console.log(`${userModel} ${displayName} (${userId}) is online. Socket ID: ${socket.id}`);
+        io.emit('user_status_change', { userId, isOnline: true, ...userDetails, model: userModel });
     });
 
     socket.on('send_message', async (data) => {
@@ -114,12 +120,22 @@ io.on('connection', (socket) => {
         for (const userId in connectedUsers) {
             if (connectedUsers[userId] && connectedUsers[userId].socketId === socket.id) {
                 const disconnectedUserId = userId;
-                const disconnectedUserName = connectedUsers[userId].name;
-                const disconnectedUserModel = connectedUsers[userId].model;
+                const disconnectedUserDetails = connectedUsers[userId];
                 delete connectedUsers[userId];
-                io.emit('user_status_change', { userId: disconnectedUserId, isOnline: false, name: disconnectedUserName, model: disconnectedUserModel });
-                console.log(`${disconnectedUserName} (${disconnectedUserId}) is now offline.`);
+                const displayName = disconnectedUserDetails.model === "User" ? 
+                    `${disconnectedUserDetails.firstName} ${disconnectedUserDetails.lastName}` : 
+                    disconnectedUserDetails.shopName;
+                io.emit('user_status_change', { 
+                    userId: disconnectedUserId, 
+                    isOnline: false, 
+                    firstName: disconnectedUserDetails.firstName, 
+                    lastName: disconnectedUserDetails.lastName, 
+                    shopName: disconnectedUserDetails.shopName, 
+                    model: disconnectedUserDetails.model 
+                });
+                console.log(`${displayName} (${disconnectedUserId}) is now offline.`);
                 break;
             }
         }
     });
+});
