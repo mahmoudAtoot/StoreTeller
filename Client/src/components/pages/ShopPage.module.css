@@ -77,3 +77,33 @@
     margin-top: 1.5rem;
   }
 }
+
+.addProductButton {
+  background-color: var(--accent);
+  color: var(--card-bg);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.addProductButton:hover {
+  background-color: var(--secondary);
+}
+
+.categoryAndAddButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribute space between items */
+  gap: 1rem; /* Space between category selector and button */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  padding: 0 1rem 0 10rem; /* Add horizontal padding to bring button slightly inward */
+}
+
+.categorySelectorWrapper {
+  flex-grow: 1; /* Allow the wrapper to take up available space */
+  display: flex;
+  justify-content: center; /* Center the category selector within its wrapper */
+}

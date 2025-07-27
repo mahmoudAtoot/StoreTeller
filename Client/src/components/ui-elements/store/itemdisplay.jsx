@@ -1,4 +1,3 @@
-import React from 'react';
 import ProductGif from '../../shared/productgif';
 import styles from './itemdisplay.module.css';
 

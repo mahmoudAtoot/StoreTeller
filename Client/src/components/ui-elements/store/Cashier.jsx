@@ -66,16 +66,13 @@ const Cashier = ({ hoveredProduct }) => {
       <div className={styles.displaySection}>
         {hoveredProduct ? (
           <div className={styles.hoveredProductInfo}>
-            <img
-              src={hoveredProduct.image || 'https://placehold.co/600x400'}
-              alt={hoveredProduct.name}
-              className={styles.hoveredProductImage}
-            />
+            {hoveredProduct.image && <img src={`http://localhost:8000${hoveredProduct.image}`} alt={hoveredProduct.name} className={styles.hoveredProductImage} />}
+
             <h3>{hoveredProduct.name}</h3>
             <p className={styles.productPrice}>${hoveredProduct.price}</p>
           </div>
         ) : (
-          <p className={styles.welcomeMessage}>Hover over an item to see details</p>
+          null
         )}
       </div>
 
@@ -98,6 +95,7 @@ const Cashier = ({ hoveredProduct }) => {
       {/* Cart Summary */}
       <div className={styles.cartSummary}>
         <h4>Cart Summary</h4>
+        {/* Placeholder for cart items */}
         <p>No items in cart yet.</p>
       </div>
 

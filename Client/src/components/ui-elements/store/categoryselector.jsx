@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './categoryselector.module.css';
+import axios from 'axios';
 
-const CategorySelector = () => {
-    const [activeCategory, setActiveCategory] = useState('Category 1');
-    const categories = ['Category 1', 'Category 2', 'Category 3'];
+const CategorySelector = ({ onSelectCategory }) => {
+    const [activeCategory, setActiveCategory] = useState('All');
+    const [dynamicCategories, setDynamicCategories] = useState([]);
+
+    useEffect(() => {
+        axios.get('/api/products/categories')
+            .then(res => {
+                setDynamicCategories(res.data);
+            })
+            .catch(err => {
+                console.error("Error fetching categories:", err);
+            });
+    }, []);
+
+    const categories = ['All', ...dynamicCategories];
+
+    const handleCategoryClick = (category) => {
+        setActiveCategory(category);
+        if (onSelectCategory) {
+            onSelectCategory(category);
+        }
+    };
 
     return (
         <div className={styles.categoryBar}>
@@ -11,7 +31,7 @@ const CategorySelector = () => {
                 <button
                     key={category}
                     className={`${styles.categoryButton} ${activeCategory === category ? styles.active : ''}`}
-                    onClick={() => setActiveCategory(category)}
+                    onClick={() => handleCategoryClick(category)}
                 >
                     {category}
                 </button>

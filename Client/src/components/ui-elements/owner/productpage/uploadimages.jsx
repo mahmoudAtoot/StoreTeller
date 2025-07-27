@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import styles from './uploadimages.module.css';
 
-const UploadImages = ({ onImageUpload }) => {
+const UploadImages = ({ onImageUpload, id, accept }) => {
   const [isDragging, setIsDragging] = useState(false);
 
   const handleFileChange = (e) => {
@@ -44,13 +44,13 @@ const UploadImages = ({ onImageUpload }) => {
     >
       <input 
         type="file" 
-        id="imageUpload" 
+        id={id} 
         multiple 
-        accept="image/*" 
+        accept={accept || "image/*"} 
         onChange={handleFileChange} 
         className={styles.fileInput}
       />
-      <label htmlFor="imageUpload" className={styles.uploadLabel}>
+      <label htmlFor={id} className={styles.uploadLabel}>
         <div className={styles.uploadIcon}>☁️</div>
         <div>Choose files to Upload</div>
         <div className={styles.dragDropText}>or drag and drop</div>

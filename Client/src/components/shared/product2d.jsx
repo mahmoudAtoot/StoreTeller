@@ -1,15 +1,11 @@
 import React from 'react';
 import styles from './product2d.module.css';
 
-const Product2D = ({ product, isOwner, onProductClick, onProductHover }) => {
+const Product2D = ({ product, isOwner, onProductClick, onProductHover, onEditClick }) => {
 
     const handleClick = () => {
-        console.log('Product2D: handleClick called');
         if (onProductClick) {
-            console.log('Product2D: Calling onProductClick with product:', product);
             onProductClick(product);
-        } else {
-            console.log('Product2D: onProductClick is UNDEFINED');
         }
     };
 
@@ -25,6 +21,8 @@ const Product2D = ({ product, isOwner, onProductClick, onProductHover }) => {
         }
     };
 
+    const imageUrl = product.image ? `http://localhost:8000${product.image}` : '';
+
     return (
         <>
             <div
@@ -33,8 +31,8 @@ const Product2D = ({ product, isOwner, onProductClick, onProductHover }) => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                <img src={product.image || 'https://placehold.co/600x400'} className={styles.productImage} alt={product.name} />
-                {isOwner && <button className={styles.editButton}>Edit</button>}
+                <img src={imageUrl} className={styles.productImage} alt={product.name} />
+                {isOwner && <button className={styles.editButton} onClick={(e) => { e.stopPropagation(); onEditClick(product); }}>Edit</button>}
             </div>
         </>
     );
