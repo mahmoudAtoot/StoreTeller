@@ -8,6 +8,8 @@
 }
 
 .loginContainer {
+  position: relative;
+  /* مهم لل::before */
   background-color: var(--bg);
   color: var(--text);
   min-height: calc(100vh - 120px);
@@ -15,9 +17,31 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  overflow: hidden;
+  /* لمنع ظهور أجزاء الخلفية المتحركة خارج الحاوية */
+  animation: fadeIn 1s ease-in-out;
+}
+
+.loginContainer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0, 245, 212, 0.06), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03), transparent 40%);
+  animation: floatLights 40s linear infinite;
+  z-index: 0;
+  filter: blur(80px);
+  pointer-events: none;
 }
 
 .loginFormWrapper {
+  position: relative;
+  /* ليكون فوق الخلفية */
+  z-index: 1;
   background: var(--card-bg);
   padding: 3rem 2.5rem;
   border-radius: 20px;
@@ -25,6 +49,7 @@
   max-width: 500px;
   box-shadow: 0 0 20px rgba(0, 245, 212, 0.1);
   transition: all 0.3s ease;
+  animation: slideUp 0.8s ease-in-out;
 }
 
 .loginFormWrapper:hover {
@@ -95,6 +120,7 @@
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 245, 212, 0.4);
 }
 
 .loginButton:hover {
@@ -126,6 +152,43 @@
   text-align: center;
   font-weight: bold;
   box-shadow: 0 0 10px rgba(255, 77, 79, 0.4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes floatLights {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
 
 /* Responsive */
