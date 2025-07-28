@@ -1,8 +1,21 @@
 import styles from "./LandingPage.module.css";
 import { Navbar, Footer } from "../shared";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { FaTruck, FaHeadset, FaUndoAlt, FaCreditCard, FaUserCircle } from "react-icons/fa";
 
 const LandingPage = () => {
+  const [shops, setShops] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/shops")
+      .then((res) => {
+        setShops(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching shops:", err);
+      });
+  }, []);
   return (
     <>
       <Navbar />
@@ -61,6 +74,21 @@ const LandingPage = () => {
         </ul>
       </section>
 
+      <section className={styles.shopSection}>
+        <h2>Explore stores enhanced by StoreTeller</h2>
+        <div className={styles.shopList}>
+          {shops.slice(0, 4).map((shop) => (
+            <div key={shop._id} className={styles.shopCard}>
+              <h3>{shop.name}</h3>
+              <p>{shop.description}</p>
+              <a href={`/${shop.name}`} className={styles.shopLink}>
+                Visit Store
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Testimonials section */}
       <section className={styles.testimonialsSection}>
         <h2 className={styles.testimonialsTitle}>What Our Users Say</h2>
@@ -98,6 +126,8 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+
+      
 
       <Footer />
     </>

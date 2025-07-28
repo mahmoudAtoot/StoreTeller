@@ -27,7 +27,7 @@ const Navbar = () => {
                         {isOwner && shopName && (
                             <Link to={`/${shopName}`} onClick={() => setMenuOpen(false)}>Owner Dashboard</Link>
                         )}
-                        <button onClick={handleLogout} className={styles.navLinks}>Logout</button>
+                        <button onClick={handleLogout}>Logout</button>
                     </>
                 ) : (
                     <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>

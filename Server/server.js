@@ -22,6 +22,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 require('./routes/auth.rout')(app);
 
 require('./routes/product.route')(app);
+require('./routes/shop.route')(app);
 
 require('./config/mongoose.config');
 
