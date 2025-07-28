@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import io from 'socket.io-client';
 import Chat from '../chat/Chat';
 import styles from './ChatPage.module.css';
 
 import { useAuth } from '../../context/AuthContext';
 
-let socket = null;
 
 const ChatPage = () => {
     const { user, isOwner } = useAuth();
@@ -17,6 +17,7 @@ const ChatPage = () => {
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState({});
+    const [socket] = useState(io(':8000'));
 
     const getDisplayName = (user) => {
         if (user.model === "User") {
@@ -30,7 +31,17 @@ const ChatPage = () => {
 
 
     useEffect(() => {
-        socket = io('http://localhost:8000');
+        const fetchUsers = async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/api/users'); // Assuming this endpoint exists
+                setUsers(response.data.map(user => ({ ...user, displayName: getDisplayName(user) })));
+                console.log("Fetched users:", response.data);
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        };
+
+        fetchUsers();
 
         socket.on('connect', () => {
             console.log('ChatPage Socket connected!');
@@ -76,10 +87,12 @@ const ChatPage = () => {
         return () => {
             if (socket) {
                 socket.disconnect();
-                socket = null;
             }
         };
-    }, []);
+    }, [user]); // Added user to dependency array to re-run effect if user changes
+
+    // Import axios at the top of the file if not already present
+    // import axios from 'axios';
 
     return (
         <div className={styles.chatPageContainer}>

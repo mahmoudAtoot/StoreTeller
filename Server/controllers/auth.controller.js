@@ -78,7 +78,8 @@ const loginUser = async (req, res) => {
 
 const getLoggedInUser = async (req, res) => {
     try {
-        const user = await User.findById(req.user._id).populate('shop');
+        console.log(req.params.id)
+        const user = await User.findById(req.params.id).populate('shop');
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -96,8 +97,18 @@ const getLoggedInUser = async (req, res) => {
     }
 };
 
+const getUsers = async (req, res) => {
+    try {
+        const users = await User.find().populate('shop');
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
+
 module.exports = {
     registerUser,
     loginUser,
-    getLoggedInUser
+    getLoggedInUser,
+    getUsers
 };
