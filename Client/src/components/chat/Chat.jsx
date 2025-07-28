@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 import styles from './Chat.module.css';
 import axios from 'axios'; // Import axios
+import { useAuth } from '../../context/AuthContext';
 
 let socket = null;
 
-const Chat = ({ otherUser, otherUserModel, otherUserName }) => {
+const Chat = ({  otherUser, otherUserModel, otherUserName }) => {
     const [loggedInUser, setLoggedInUser] = useState(null); // New state for fetched user
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
@@ -13,12 +14,14 @@ const Chat = ({ otherUser, otherUserModel, otherUserName }) => {
     const [isOtherUserOnline, setIsOtherUserOnline] = useState(false);
     const messagesEndRef = useRef(null);
     const typingTimeoutRef = useRef(null);
+    const {user} = useAuth()
+    const [socket] = useState(io(':8000'));
 
     // Fetch logged-in user data on component mount
     useEffect(() => {
         const fetchLoggedInUser = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/me'); // Assuming /api/me endpoint
+                const response = await axios.get('http://localhost:8000/api/me/'+user._id);
                 setLoggedInUser(response.data);
             } catch (error) {
                 console.error("Error fetching logged-in user:", error);
@@ -38,8 +41,6 @@ const Chat = ({ otherUser, otherUserModel, otherUserName }) => {
         if (!loggedInUser) return; // Only connect socket if user data is available
 
         const connectSocket = () => {
-            socket = io('http://localhost:8000');
-
             socket.on('connect', () => {
                 console.log('Socket connected!');
                 socket.emit('user_online', { userId: loggedInUser._id, userModel: loggedInUser.model });
@@ -98,7 +99,6 @@ const Chat = ({ otherUser, otherUserModel, otherUserName }) => {
         return () => {
             if (socket) {
                 socket.disconnect();
-                socket = null;
             }
         };
     }, [loggedInUser, otherUser, otherUserModel]); // Add loggedInUser to dependencies

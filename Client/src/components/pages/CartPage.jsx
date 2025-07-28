@@ -126,6 +126,7 @@ const CartPage = () => {
               <>
                 <h3 className={styles.chatTitle}>Live Chat with Owner</h3>
                 <Chat 
+                
                     otherUser={OWNER_ID}
                     otherUserModel={OWNER_MODEL}
                     otherUserName="Owner"

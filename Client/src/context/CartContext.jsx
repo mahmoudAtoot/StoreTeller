@@ -19,7 +19,11 @@ export const CartProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    const simplifiedCartItems = cartItems.map(item => ({
+      _id: item._id,
+      quantity: item.quantity,
+    }));
+    localStorage.setItem('cartItems', JSON.stringify(simplifiedCartItems));
   }, [cartItems]);
 
   const addItemToCart = (product) => {
